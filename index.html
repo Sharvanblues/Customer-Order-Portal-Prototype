@@ -726,7 +726,7 @@ function startScenario2(){
               <p class="ies-p">Your order for Spark Constructions is set for Sep 2, 2026. You can review the schedule and details anytime in the order portal.</p>
               <div class="ies-btn hotspot" onclick="show('s1-login')">Review order</div>
             </div>
-            <div class="ies-card"><h3>What’s included in this order</h3><div class="ies-fl"><div>Contract: INTUITC-9358</div><div>Entities: 12 across 3 subsidiaries</div><div>Products: IES + Workforce</div><div>Signed: Aug 15, 2026</div><div>Ready to run: now</div></div></div>
+            <div class="ies-card"><h3>What’s included in this order</h3><div class="ies-fl"><div>Contract: INTUITC-9358</div><div>Entities: 12</div><div>Products: IES + Workforce</div><div>Signed: Aug 15, 2026</div><div>Ready to run: now</div></div></div>
           </div>
           <div class="ies-ft"><p>This message was sent to dana.alvarez@sparkconstructions.com at the request of an existing Intuit Enterprise Suite customer. If you have chosen not to receive marketing messages, you may continue to receive business communications about Intuit products, which may either affect your service or software, your account, or which may be legally required. If you receive a suspicious email, please report it by forwarding the email to security.intuit.com.</p><div class="lk"><a>Security</a><span style="color:#fff">|</span><a>Privacy statement</a></div><p>&copy; 2024 Intuit Inc., Trademarks.<br>2800 E. Commerce Center Place, Tucson, AZ 85706</p><div class="brand"><span class="it">INTUIT</span><span class="pl"><span class="b" style="background:#e01e5a"></span>turbotax</span><span class="pl"><span class="b" style="background:#00b64f"></span>creditkarma</span><span class="pl"><span class="b" style="background:#2ca01c"></span>quickbooks</span><span class="pl"><span class="b" style="background:#ffe01b"></span>mailchimp</span></div></div>
         </div>
@@ -1040,7 +1040,7 @@ function startScenario2(){
             <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:16px;font-weight:600;color:#21262a">$2,200.00</span></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:26px 28px;border-bottom:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Discount</span><span style="font-size:15px;font-weight:600;color:#108000">$7,200.00</span></div>
             <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-bottom:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$30,000.00</span></div>
-            <div style="padding:13px 28px 22px"><p style="font-size:12px;line-height:19px;color:#6b6c72">This order was executed on Sep 2, 2026. A receipt and itemized breakdown are available in Order History (Order ID 56781234). By placing this order you agree to Intuit's <span style="color:#205ea3;font-weight:600">Terms of Service</span> and <span style="color:#205ea3;font-weight:600">Privacy Statement</span>.</p></div>
+            <div style="padding:13px 28px 22px"></div>
             </div>
           </div>
         </div>
@@ -1515,7 +1515,7 @@ var S2 = {
     {co:'Leary Industries', id:'9341457001294633', addr:'88 Oak Lane', pm:'Visa *4477'},
     {co:'Summit Mechanical LLC', id:'9341457338820194', addr:'12 Cedar Blvd', pm:'Amex *7744'}
   ],
-  status:{}, mode:'payment', _pending:[], _completed:false,
+  status:{}, fix:{}, mode:'payment', _pending:[], _completed:false,
   filters:{ issueType:'', payment:'all', search:'' },
   _lockedCat:null /* in 'all' mode: category user has selected first, opposite is disabled */
 };
@@ -1641,7 +1641,7 @@ function s2RenderEntity(){
     var st=s2StatusFor(r);
     var cat=s2CatFor(r);
     var lockedOut = (S2._lockedCat && S2._lockedCat!==cat);
-    var disabled = !!st || lockedOut;
+    var disabled = (st==='progress') || lockedOut;
     // In "completed" order state, everything reads as resolved but the ROW stays visually enabled;
     // only the checkbox and any interaction is inert.
     if(S2._completed){ st='resolved'; disabled=false; }
@@ -1650,7 +1650,7 @@ function s2RenderEntity(){
       : '<span class="status-badge status-resolved">RESOLVED</span>';
     var action;
     if(S2._completed){
-      action='<span class="el-view-details inert">View details</span>';
+      action='<span class="el-view-details" onclick="s2ViewDetails(\''+r.id+'\')">View details</span>';
     } else if(!st){
       // Combo split button: primary Resolve + dropdown (View details, Get copilot assistance)
       action = '<span class="el-combo" id="cmb-'+r.id+'">'
@@ -1670,10 +1670,12 @@ function s2RenderEntity(){
     else if(lockedOut){ cb = '<input type="checkbox" disabled title="Not selectable together with '+S2._lockedCat+' issues">'; }
     else { cb = '<input type="checkbox" class="el-body-cbx" data-id="'+r.id+'" data-cat="'+cat+'" onchange="s2OnCheck()">'; }
     var zebra = (rows.indexOf(r)%2===1)?' zebra':'';
+    var showPm=r.pm, showAddr=r.addr;
+    if(st==='resolved'){ var _fx=S2.fix[r.id]; if(_fx){ if(cat==='payment'&&_fx.newPm) showPm=_fx.newPm; if(cat==='address'&&_fx.newAddr) showAddr=_fx.newAddr; } }
     return '<div class="el-row el-body-row'+zebra+(disabled?' disabled':'')+'">'
       + '<div class="el-cell el-cb">'+cb+'</div>'
       + '<div class="el-cell co"><span>'+r.co+'</span><span class="cid">'+r.id+'</span></div>'
-      + '<div class="el-cell">'+r.addr+'</div><div class="el-cell">'+r.pm+'</div>'
+      + '<div class="el-cell">'+showAddr+'</div><div class="el-cell">'+showPm+'</div>'
       + '<div class="el-cell">'+(cat==='payment'?'Payment':'Address')+'</div><div class="el-cell">'+statusHtml+'</div>'
       + '<div class="el-cell">'+action+'</div></div>';
   }).join('');
@@ -1845,7 +1847,113 @@ function s2CloseAllCombos(){ document.querySelectorAll('#s2-el-container .el-com
 document.addEventListener('click', function(e){
   if(!e.target.closest || !e.target.closest('.el-combo')) s2CloseAllCombos();
 });
-function s2ViewDetails(id){ s2CloseAllCombos(); /* placeholder for prototype — no destination */ }
+function s2NowLabel(){
+  var d=new Date(), hh=d.getHours(), mm=d.getMinutes(), ap=hh>=12?'PM':'AM', h12=((hh+11)%12)+1;
+  return 'Today, '+h12+':'+(mm<10?'0':'')+mm+' '+ap;
+}
+function s2PmLabelFromCard(card){
+  if(!card) return 'Selected payment method';
+  var b=card.querySelector('.pay-meta b'); if(b && b.textContent.trim()) return b.textContent.trim();
+  var n=card.querySelector('.pay-name'); if(n) return n.textContent.trim().replace(/\s+/g,' ');
+  return 'Selected payment method';
+}
+function s2RecordFix(id, data){
+  var r=s2FindRowById(id); if(!r) return;
+  S2.fix[id]={ cat:s2CatFor(r), co:r.co, cid:r.id, oldPm:r.pm, oldAddr:r.addr,
+    newPm:(data&&data.newPm)||'', newAddr:(data&&data.newAddr)||'', when:s2NowLabel() };
+}
+function s2CaptureAndRecord(ids){
+  if(!ids||!ids.length) return;
+  var cat=s2PendingCat(), newPm='', newAddr='';
+  if(cat==='payment'){
+    var num=document.getElementById('s2-cc-num');
+    if(num && num.value.replace(/\D/g,'').length>=12){ newPm='Card *'+num.value.replace(/\D/g,'').slice(-4)+' (new)'; }
+    else { newPm=s2PmLabelFromCard(document.querySelector('#s2-widget-slot .pay-card.sel')); }
+  } else {
+    var g=function(id){var e=document.getElementById(id);return e?e.value.trim():'';};
+    newAddr=[g('s2-addr-street'),g('s2-addr-apt'),g('s2-addr-city'),g('s2-addr-state'),g('s2-addr-zip')].filter(Boolean).join(', ');
+  }
+  ids.forEach(function(id){ s2RecordFix(id,{newPm:newPm,newAddr:newAddr}); });
+}
+function s3CaptureAndRecord(p, ids){
+  if(!p||!ids||!ids.length) return;
+  var newPm='', newAddr='';
+  if(p.cat==='payment'){
+    var num=document.getElementById('s3-cc-num');
+    if(num && num.value.replace(/\D/g,'').length>=12){ newPm='Card *'+num.value.replace(/\D/g,'').slice(-4)+' (new)'; }
+    else { var sel=document.querySelector('.pay-card.sel'); newPm = sel ? s2PmLabelFromCard(sel) : 'Intuit Business Credit Card \u00b7 Mastercard *4567'; }
+  } else {
+    newAddr='4520 Sunset Blvd, Suite 210, Los Angeles, CA 94103';
+  }
+  ids.forEach(function(id){ s2RecordFix(id,{newPm:newPm,newAddr:newAddr}); });
+}
+function s2CurrentPmCallout(){
+  var ids=S2._pending||[]; if(!ids.length) return '';
+  var pms=[]; ids.forEach(function(id){ var r=s2FindRowById(id); if(r && pms.indexOf(r.pm)<0) pms.push(r.pm); });
+  if(!pms.length) return '';
+  return '<div style="display:flex;gap:10px;align-items:flex-start;background:#fdeceb;border:1px solid #f4b9b4;border-radius:8px;padding:10px 12px;margin:2px 0 10px">'
+    + '<span style="color:#c11b17;display:inline-flex;flex:0 0 auto;margin-top:1px">'+(typeof ICO_ATTN!=='undefined'?ICO_ATTN:'')+'</span>'
+    + '<span style="font-size:12px;line-height:16px"><span style="display:block;color:#6b6c72">Current payment method (failed)</span>'
+    + '<b style="color:#21262a;font-size:13px">'+pms.join(', ')+'</b></span></div>';
+}
+function s2DetailBadge(text,bg,fg){
+  return '<span style="display:inline-flex;align-items:center;gap:6px;background:'+bg+';color:'+fg+';border-radius:6px;padding:3px 9px;font-size:11px;font-weight:700;letter-spacing:.3px">'+text+'</span>';
+}
+function s2DetailRow(label,value,sub,kind){
+  var col = (kind==='old'||kind==='fail') ? '#c11b17' : (kind==='new' ? '#0e7548' : '#21262a');
+  var deco = kind==='old' ? 'text-decoration:line-through;' : '';
+  var subHtml = sub ? '<div style="font-size:11px;color:#6b6c72;margin-top:1px">'+sub+'</div>' : '';
+  return '<div style="display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid #eceef1">'
+    + '<div style="font-size:13px;color:#6b6c72;flex:0 0 auto">'+label+'</div>'
+    + '<div style="text-align:right;max-width:260px"><div style="font-size:14px;font-weight:600;color:'+col+';'+deco+'">'+value+'</div>'+subHtml+'</div></div>';
+}
+function s2ViewDetails(id){
+  s2CloseAllCombos();
+  var r=s2FindRowById(id); if(!r) return;
+  var cat=s2CatFor(r);
+  var st = S2._completed ? 'resolved' : s2StatusFor(r);
+  var resolved = (st==='resolved');
+  var inprogress = (st==='progress');
+  var acted = resolved || inprogress;
+  var fx = S2.fix[id] || {};
+  var when = fx.when || 'Today';
+  var badge = resolved ? s2DetailBadge('RESOLVED','#dcf5de','#0e7548')
+            : inprogress ? s2DetailBadge('IN PROGRESS','#fff4d6','#8a6100')
+            : s2DetailBadge('FAILED','#fdeceb','#c11b17');
+  var rows;
+  if(cat==='payment'){
+    rows = s2DetailRow('Error type','Payment failure') + s2DetailRow('Company', r.co, r.id);
+    if(acted){
+      rows += s2DetailRow('Previous payment method', fx.oldPm||r.pm, null, 'old')
+            + s2DetailRow('New payment method', fx.newPm||'Bank account *2345', null, 'new')
+            + s2DetailRow(resolved?'Fixed on':'Submitted on', when);
+    } else {
+      rows += s2DetailRow('Payment method (failed)', r.pm, null, 'fail');
+    }
+  } else {
+    rows = s2DetailRow('Error type','Address error') + s2DetailRow('Company', r.co, r.id);
+    if(acted){
+      rows += s2DetailRow('Previous address', fx.oldAddr||r.addr, null, 'old')
+            + s2DetailRow('New address', fx.newAddr||'4520 Sunset Blvd, Suite 210, Los Angeles, CA 94103', null, 'new')
+            + s2DetailRow(resolved?'Fixed on':'Submitted on', when);
+    } else {
+      rows += s2DetailRow('Current address (failed)', r.addr, null, 'fail');
+    }
+  }
+  lockPageScroll();
+  var slot=document.getElementById('s2-widget-slot'); if(!slot) return;
+  slot.innerHTML='<div class="widget-scrim" onclick="if(event.target===this)s2CloseWidget()">'
+    + '<div class="widget" style="max-width:440px">'
+      + '<div class="wg-topbar"><div class="wg-topbar-title">'+(acted?'Fix details':'Issue details')+'</div>'
+        + '<span class="wg-close" onclick="s2CloseWidget()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></div>'
+      + '<div style="padding:2px 2px 0">'
+        + badge
+        + '<div style="margin-top:8px">'+rows+'</div>'
+      + '</div>'
+      + '<div class="wg-divider"></div>'
+      + '<div class="wg-foot" style="justify-content:flex-end"><button class="btn btn-sm btn-primary" onclick="s2CloseWidget()">Done</button></div>'
+    + '</div></div>';
+}
 function s2GetCopilot(id){ s2CloseAllCombos(); /* placeholder for prototype — no destination */ }
 /* navigate from completed review to entity list showing resolved entities */
 function s2ViewCompletedEntities(){
@@ -1904,6 +2012,7 @@ function s2ShowPaymentWidget(){
     + '<div class="wg-topbar"><div class="wg-topbar-title">Edit payment method</div>'
         + '<span class="wg-close" onclick="s2CloseWidget()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span></div>'
     + s2WidgetEntityHeader()
+    + s2CurrentPmCallout()
     + '<div class="wg-section-title">Saved payment method(s)</div>'
     + '<div class="pay-card sel" onclick="s2PickPay(this)"><div class="pay-radio"></div><div class="pay-cardbody">'
         + '<div style="display:inline-flex;align-items:center;gap:6px;background:#d9effb;border-radius:6px;padding:2px 6px;font-size:12px;font-weight:500;color:#393a3d;width:max-content">Upto 5% cash back</div>'
@@ -2015,6 +2124,7 @@ function s2ApplyFix(){
   var primary=document.querySelector('#s2-widget-slot .wg-foot .btn-primary');
   if(primary && primary.classList.contains('btn-disabled')) return;
   var ids=S2._pending||[];
+  s2CaptureAndRecord(ids);
   ids.forEach(function(id){ S2.status[id]='progress'; });
   S2._pending=[];
   S2._lockedCat=null;
@@ -2160,7 +2270,7 @@ function s2ShowCompletedReview(){
         + '<div style="display:flex;align-items:center;justify-content:space-between;padding:26px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Discount</span><span style="font-size:15px;font-weight:600;color:#108000">$7,200.00</span></div>'
         + '<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:15px;font-weight:600;color:#21262a">$2,200.00</span></div>'
         + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$30,000.00</span></div>'
-        + '<div style="padding:13px 28px 22px;border-top:1px solid #e2e9ed"><p style="font-size:12px;line-height:19px;color:#6b6c72">This order was executed on Aug 20, 2026. A receipt and itemized breakdown are available in Order History (Order ID 83180912). By placing this order you agreed to Intuit\u2019s <span style="color:#205ea3;font-weight:600">Terms of Service</span> and <span style="color:#205ea3;font-weight:600">Privacy Statement</span>.</p></div>'
+        + '<div style="padding:13px 28px 22px;border-top:1px solid #e2e9ed"></div>'
       + '</div></div>';
 }
 
@@ -3414,6 +3524,7 @@ function s3ApplyAddressChat(){
   var p = S3_PLAN[S3._activePlanIdx]; if(!p) return;
   S3._appliedPlans[p.id] = true;
   var remaining = s3RemainingIdsFor(p);
+  s3CaptureAndRecord(p, remaining);
   remaining.forEach(function(id){ S2.status[id]='progress'; });
   if(document.getElementById('s2-entity').classList.contains('active')) s2RenderEntity();
   s3TransitionToStep(5, 'Applying "'+p.label+'"');
@@ -3511,6 +3622,7 @@ function s3ApplyEmbedded(){
   var p = S3_PLAN[S3._activePlanIdx]; if(!p) return;
   S3._appliedPlans[p.id] = true;
   var remaining = s3RemainingIdsFor(p);
+  s3CaptureAndRecord(p, remaining);
   remaining.forEach(function(id){ S2.status[id]='progress'; });
   if(document.getElementById('s2-entity').classList.contains('active')) s2RenderEntity();
   s3TransitionToStep(5, 'Applying "'+p.label+'"');
