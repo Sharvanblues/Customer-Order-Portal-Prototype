@@ -2644,10 +2644,10 @@ function openPaymentSplitModal(){
         + '<h2 style="font-size:24px;font-weight:600;color:#393a3d;margin-bottom:12px">Payment split up</h2>'
         + '<p style="font-size:16px;color:#393a3d;line-height:1.4;margin-bottom:16px">Your monthly order total is divided across these saved payment methods.</p>'
         + '<div style="margin-top:8px">'+rows+'</div>'
-        + '<div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-top:2px solid #21262a;margin-top:4px"><span style="font-size:15px;font-weight:600;color:#21262a">Total charged monthly</span><span style="font-size:16px;font-weight:700;color:#21262a">$'+total.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'</span></div>'
+        + '<div style="display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Total charged monthly</span><span style="font-size:16px;font-weight:700;color:#21262a">$'+total.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})+'</span></div>'
       + '</div>'
       + '<div style="display:flex;justify-content:flex-end;gap:20px;padding:24px 40px 40px">'
-        + '<button class="btn btn-sm btn-primary" onclick="closePaymentSplitModal()">Close</button>'
+        + '<button class="btn btn-sm btn-tertiary" onclick="closePaymentSplitModal()">Close</button>'
       + '</div>'
     + '</div>';
   host.appendChild(scrim);
