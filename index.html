@@ -412,6 +412,13 @@ a{color:inherit;text-decoration:none;cursor:pointer}
 .bulk-bar .bb-close:hover{opacity:1}
 .bulk-bar .bb-close svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .bulk-bar .bb-count{font-size:13px;font-weight:500;color:#fff;opacity:.9}
+.bulk-bar .bb-desc{font-size:13px;font-weight:400;color:#fff;line-height:1.45;max-width:340px}
+.bulk-bar .bb-desc b{font-weight:600}
+.bulk-bar .bb-actions{display:flex;gap:8px;margin-top:2px}
+.bulk-bar .bb-action-primary{background:#fff;color:#21262a;border:none;font-weight:600}
+.bulk-bar .bb-action-primary:hover{background:#f4f5f8}
+.bulk-bar .bb-action-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.5);font-weight:500}
+.bulk-bar .bb-action-ghost:hover{background:rgba(255,255,255,.1)}
 .bulk-bar .bb-caret{position:absolute;width:0;height:0;transform:translateY(-50%)}
 .bulk-bar.caret-left .bb-caret{left:-9px;border-top:9px solid transparent;border-bottom:9px solid transparent;border-right:9px solid #393a3d}
 .bulk-bar.caret-right .bb-caret{right:-9px;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:9px solid #393a3d}
@@ -533,7 +540,7 @@ function goHome(){
   if(typeof S1!=='undefined'){ S1._completed=false; }
   if(typeof S2!=='undefined'){
     S2.status={}; S2.mode='payment'; S2._completed=false; S2._pending=[];
-    S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null;
+    S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null;
   }
   if(typeof S3!=='undefined'){
     S3.step=0; S3._completed=false; S3._tipShown=false; S3._copilotOpen=false;
@@ -635,7 +642,7 @@ document.getElementById('indexRoot').innerHTML = `
       <p style="font-size:17px;color:#6b6c72;max-width:640px;line-height:1.6">Choose a scenario to walk through the customer experience. Click the highlighted actions on each screen to move through the flow.</p>
     </div>
     <!-- cards -->
-    <div style="max-width:1200px;width:100%;margin:0 auto;padding:0 32px 64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+    <div style="max-width:1200px;width:100%;margin:0 auto;padding:0 32px 64px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
       <div class="uc-card" onclick="startScenario1()">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
           <div style="width:40px;height:40px;border-radius:10px;background:#e0edff;display:flex;align-items:center;justify-content:center">
@@ -672,6 +679,18 @@ document.getElementById('indexRoot').innerHTML = `
         <div class="uc-task"><div class="uc-task-label">YOUR TASK</div><div class="uc-task-body">Review the errors in a placed order and resolve them to completion.</div></div>
         <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#236cff;margin-top:20px">Start flow <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#236cff" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+      <div class="uc-card" onclick="startScenario4()">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:10px;background:#e9f7ef;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2ca01c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h10"/><circle cx="19" cy="17" r="3"/></svg>
+          </div>
+          <span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8d9096">SCENARIO 4</span>
+        </div>
+        <div style="font-size:21px;font-weight:700;color:#21262a;margin-bottom:10px;line-height:1.3">Resolve grouped errors in-place</div>
+        <div style="font-size:14px;color:#6b6c72;line-height:1.6;margin-bottom:16px">A placed order ran but some entities failed. The review page groups failures by root cause so the customer can fix each group without visiting a separate list.</div>
+        <div class="uc-task"><div class="uc-task-label">YOUR TASK</div><div class="uc-task-body">Resolve every failure group directly from the order review page.</div></div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#2ca01c;margin-top:20px">Start flow <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ca01c" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
     </div>
     <div style="max-width:1200px;width:100%;margin:0 auto;padding:0 32px 40px;font-size:12px;color:#8d9096;border-top:1px solid #e9edf2;margin-top:auto"><div style="padding-top:20px">Prototype for user testing · Not production UI · © 2026 Intuit Inc.</div></div>
   </div>
@@ -687,7 +706,7 @@ document.getElementById('indexRoot').innerHTML = `
 var S1 = { _completed:false };
 function startScenario1(){ S1._completed=false; if(typeof S3!=='undefined') S3._active=false; show('s1-email'); }
 function startScenario2(){
-  if(typeof S2!=='undefined'){ S2.status={}; S2.mode='payment'; S2._completed=false; S2._pending=[]; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._bulkTipDismissed=false; }
+  if(typeof S2!=='undefined'){ S2.status={}; S2.mode='payment'; S2._completed=false; S2._pending=[]; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null; S2._bulkTipDismissed=false; }
   if(typeof S3!=='undefined'){ S3._active=false; }
   if(typeof s2CompleteTimer!=='undefined' && s2CompleteTimer){ clearTimeout(s2CompleteTimer); s2CompleteTimer=null; }
   if(typeof s2FinalizeAnim!=='undefined' && s2FinalizeAnim){ clearInterval(s2FinalizeAnim); s2FinalizeAnim=null; }
@@ -1076,8 +1095,9 @@ function startScenario2(){
             <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-bottom:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Intuit Enterprise Suite</span><span style="font-size:13px;color:#6b6c72">Includes 1 Entity, 6 Standard Users, 4 Dimensions, and Bill Pay Elite</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$715.00</span></div>
             <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-bottom:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Additional Entities</span><span style="font-size:13px;color:#6b6c72">13 entities included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$514.00</span></div>
             <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-bottom:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-bottom:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
-            <div style="padding:13px 28px 22px"><p style="font-size:12px;line-height:19px;color:#6b6c72">This order total matches your signed contract. Taxes are added at checkout phase. By placing this order you agree to Intuit's <span style="color:#205ea3;font-weight:600">Terms of Service</span> and <span style="color:#205ea3;font-weight:600">Privacy Statement</span>.</p></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Subtotal</span><span style="font-size:16px;font-weight:600;color:#21262a">$2,400.00</span></div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:16px;font-weight:600;color:#21262a">$250.00</span></div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
             </div>
           </div>
         </div>
@@ -1542,7 +1562,6 @@ function toggleCollapse(headerEl){
       </div></div>
     </div>
     <div id="s2-bulk-slot"></div>
-    <div id="s2-widget-slot"></div>
   </div></div>
 </div>
 
@@ -1718,7 +1737,8 @@ function s2RenderEntity(){
   var body=rows.map(function(r){
     var st=s2StatusFor(r);
     var cat=s2CatFor(r);
-    var lockedOut = (S2._lockedCat && S2._lockedCat!==cat);
+    var groupKey = s2GroupKeyForRow(r);
+    var lockedOut = (S2._lockedGroup && S2._lockedGroup!==groupKey);
     var disabled = (st==='progress') || lockedOut;
     // In "completed" order state, everything reads as resolved but the ROW stays visually enabled;
     // only the checkbox and any interaction is inert.
@@ -1746,8 +1766,8 @@ function s2RenderEntity(){
     var cb;
     if(S2._completed){ cb = ''; }
     else if(st){ cb = '<input type="checkbox" disabled>'; }
-    else if(lockedOut){ cb = '<input type="checkbox" disabled title="Not selectable together with '+S2._lockedCat+' issues">'; }
-    else { cb = '<input type="checkbox" class="el-body-cbx" data-id="'+r.id+'" data-cat="'+cat+'" onchange="s2OnCheck()">'; }
+    else if(lockedOut){ cb = '<input type="checkbox" disabled title="Only rows with similar issues can be selected together">'; }
+    else { cb = '<input type="checkbox" class="el-body-cbx" data-id="'+r.id+'" data-cat="'+cat+'" data-group="'+groupKey+'" onchange="s2OnCheck()">'; }
     var zebra = (rows.indexOf(r)%2===1)?' zebra':'';
     var showPm=r.pm, showAddr=r.addr;
     if(st==='resolved'){ var _fx=S2.fix[r.id]; if(_fx){ if(cat==='payment'&&_fx.newPm) showPm=_fx.newPm; if(cat==='address'&&_fx.newAddr) showAddr=_fx.newAddr; } }
@@ -1793,7 +1813,7 @@ function s2RenderEntity(){
 function s2SetIssueFilter(v){
   S2.filters.issueType = v || '';
   S2.filters.payment='all'; // reset dependent filter since payment methods may differ
-  S2._lockedCat=null;
+  S2._lockedCat=null; S2._lockedGroup=null;
   s2RenderEntity();
 }
 function s2SetPmFilter(v){ S2.filters.payment = v || 'all'; s2RenderEntity(); }
@@ -1817,6 +1837,17 @@ function s2SelectedCats(){
   var cats=[]; document.querySelectorAll('#s2-el-container input[type=checkbox][data-id]').forEach(function(c){ if(c.checked) cats.push(c.dataset.cat); });
   return cats;
 }
+/* A "group" is a set of rows sharing the same root-cause fix.
+   Payment: rows sharing the same failed card (r.pm). Address: all address rows. */
+function s2GroupKeyForRow(r){ return s2CatFor(r)==='payment' ? 'pay:'+r.pm : 'addr:'; }
+function s2GroupLabelForRow(r){
+  var cat = s2CatFor(r);
+  return cat==='payment' ? r.pm+' payment failures' : 'address issues';
+}
+function s2GroupSizeForRow(r){
+  var key = s2GroupKeyForRow(r);
+  return (S2.payment.concat(S2.address)).filter(function(x){ return s2GroupKeyForRow(x)===key && !s2StatusFor(x); }).length;
+}
 function s2DismissBulkTip(){ S2._bulkTipDismissed=true; var t=document.getElementById('s2-bulk-tip'); if(t) t.remove(); }
 function s2FindRowById(id){
   var all=S2.payment.concat(S2.address);
@@ -1826,49 +1857,58 @@ function s2FindRowById(id){
 function s2OnCheck(){
   var sel=s2SelectedIds();
   var cats=s2SelectedCats();
-  // If we're showing "All" (no issue type filter), lock the opposite category
-  var noIssueFilter = !S2.filters.issueType;
-  if(noIssueFilter){
-    if(sel.length>0){
-      var firstCat = cats[0];
-      if(S2._lockedCat!==firstCat){
-        S2._lockedCat=firstCat;
-        // Re-render to disable opposite category, then re-check selected rows
-        s2RenderEntity();
-        sel.forEach(function(id){
-          var cb=document.querySelector('#s2-el-container input[data-id="'+id+'"]');
-          if(cb) cb.checked=true;
-        });
-        sel=s2SelectedIds(); cats=s2SelectedCats();
-      }
-    } else {
-      if(S2._lockedCat){
-        S2._lockedCat=null;
-        s2RenderEntity();
-        return;
-      }
+  // Determine which group is checked (first checked box wins) and lock others
+  var firstCb = document.querySelector('#s2-el-container input[type=checkbox][data-id]:checked');
+  var firstGroup = firstCb ? firstCb.dataset.group : null;
+  if(sel.length>0){
+    if(S2._lockedGroup !== firstGroup){
+      S2._lockedGroup = firstGroup;
+      s2RenderEntity();
+      sel.forEach(function(id){
+        var cb=document.querySelector('#s2-el-container input[data-id="'+id+'"]');
+        if(cb) cb.checked=true;
+      });
+      sel=s2SelectedIds(); cats=s2SelectedCats();
+    }
+  } else {
+    if(S2._lockedGroup){
+      S2._lockedGroup=null;
+      s2RenderEntity();
+      return;
     }
   }
   s2DrawBulkBar(sel, cats);
 }
 function s2DrawBulkBar(sel, cats){
-  // remove any previous
   var existing=document.getElementById('s2-bulk-bar'); if(existing) existing.remove();
   var slot=document.getElementById('s2-bulk-slot-inline');
   if(slot) slot.innerHTML='';
   if(!sel || sel.length===0) return;
   var cont=document.getElementById('s2-el-container'); if(!cont) return;
-  var effectiveCat = S2._lockedCat || cats[0];
-  var actionLabel = effectiveCat==='payment'?'Edit payment method':'Edit address';
+  // Identify the group of the first checked row to describe the shared error
+  var firstRow = s2FindRowById(sel[0]);
+  var groupLabel = firstRow ? s2GroupLabelForRow(firstRow) : 'similar issues';
+  var groupSize = firstRow ? s2GroupSizeForRow(firstRow) : sel.length;
   var bar=document.createElement('div');
   bar.id='s2-bulk-bar'; bar.className='bulk-bar caret-left';
-  bar.innerHTML='<div class="bb-top"><span class="bb-label">Bulk action</span>'
-    + '<button class="bb-action" onclick="s2OpenWidgetForSelected()">'+actionLabel+'</button>'
-    + '<span class="bb-close" onclick="s2ClearSelection()"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span></div>'
-    + '<div class="bb-count">'+sel.length+' compan'+(sel.length===1?'y':'ies')+' selected</div>'
+  bar.innerHTML =
+    '<div class="bb-top">'
+      + '<span class="bb-label">Bulk edit</span>'
+      + '<span class="bb-close" onclick="s2ClearSelection()"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span>'
+    + '</div>'
+    + '<div class="bb-desc"><b>'+groupSize+' entit'+(groupSize===1?'y':'ies')+'</b> share the same <b>'+groupLabel+'</b>. You have <b>'+sel.length+'</b> selected — fix them together or one at a time.</div>'
+    + '<div class="bb-actions">'
+      + '<button class="bb-action bb-action-primary" onclick="s2OpenWidgetForSelected()">Bulk fix ('+sel.length+')</button>'
+      + '<button class="bb-action bb-action-ghost" onclick="s2SingleEditFromSelection()">Single edit</button>'
+    + '</div>'
     + '<span class="bb-caret"></span>';
   cont.appendChild(bar);
   s2PositionBulk();
+}
+/* Single edit: open the widget for one row at a time; picks the first selected id */
+function s2SingleEditFromSelection(){
+  var sel = s2SelectedIds(); if(!sel.length) return;
+  s2OpenWidgetForId(sel[0]);
 }
 function s2PositionBulk(){
   var bar=document.getElementById('s2-bulk-bar'); if(!bar) return;
@@ -1928,7 +1968,7 @@ function s2ToggleAll(master){
 function s2ClearSelection(){
   document.querySelectorAll('#s2-el-container input[type=checkbox][data-id]').forEach(function(c){c.checked=false;});
   var m=document.getElementById('s2-select-all'); if(m) m.checked=false;
-  S2._lockedCat=null;
+  S2._lockedCat=null; S2._lockedGroup=null;
   s2ClearBulk();
   s2RenderEntity();
 }
@@ -2175,7 +2215,7 @@ function s2ViewDetails(id){
 function s2GetCopilot(id){ s2CloseAllCombos(); /* placeholder for prototype — no destination */ }
 /* navigate from completed review to entity list showing resolved entities */
 function s2ViewCompletedEntities(){
-  S2.mode='all'; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null;
+  S2.mode='all'; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null;
   show('s2-entity'); s2RenderEntity();
 }
 
@@ -2186,7 +2226,7 @@ function s2PendingCat(){
   var p=S2._pending||[]; if(!p.length) return 'payment';
   var r=s2FindRowById(p[0]); return r ? s2CatFor(r) : 'payment';
 }
-function s2ResolveAll(){ S2.mode='all'; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; show('s2-entity'); s2RenderEntity(); }
+function s2ResolveAll(){ S2.mode='all'; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null; show('s2-entity'); s2RenderEntity(); }
 function s2OpenWidgetInternal(){
   var cat=s2PendingCat();
   if(cat==='payment'){ s2ShowPaymentWidget(); return; }
@@ -2345,7 +2385,7 @@ function s2ApplyFix(){
   s2CaptureAndRecord(ids);
   ids.forEach(function(id){ S2.status[id]='progress'; });
   S2._pending=[];
-  S2._lockedCat=null;
+  S2._lockedCat=null; S2._lockedGroup=null;
   s2CloseWidget();
   s2RenderEntity();
   startItemResolutionTimers(ids, 3000);
@@ -2392,8 +2432,8 @@ function cancelAllItemResolutionTimers(){
 }
 
 /* resolve entry points */
-function s2ResolvePayment(){ S2.mode='payment'; S2.filters={issueType:'payment',payment:'all',search:''}; S2._lockedCat=null; show('s2-entity'); s2RenderEntity(); }
-function s2ResolveAddress(){ S2.mode='address'; S2.filters={issueType:'address',payment:'all',search:''}; S2._lockedCat=null; show('s2-entity'); s2RenderEntity(); }
+function s2ResolvePayment(){ S2.mode='payment'; S2.filters={issueType:'payment',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null; show('s2-entity'); s2RenderEntity(); }
+function s2ResolveAddress(){ S2.mode='address'; S2.filters={issueType:'address',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null; show('s2-entity'); s2RenderEntity(); }
 
 /* ============ REVIEW (partial / resolving) ============ */
 function s2RenderReview(){
@@ -2483,8 +2523,9 @@ function s2ShowCompletedReview(){
         + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Intuit Enterprise Suite</span><span style="font-size:13px;color:#6b6c72">Includes 1 Entity, 6 Standard Users, 4 Dimensions, and Bill Pay Elite</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$715.00</span></div>'
         + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Additional Entities</span><span style="font-size:13px;color:#6b6c72">13 entities included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$514.00</span></div>'
         + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>'
-        + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>'
-        + '<div style="padding:13px 28px 22px;border-top:1px solid #e2e9ed"><p style="font-size:12px;line-height:19px;color:#6b6c72">This order total matches your signed contract. Taxes are added at checkout phase.</p></div>'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Subtotal</span><span style="font-size:16px;font-weight:600;color:#21262a">$2,400.00</span></div>'
+        + '<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:16px;font-weight:600;color:#21262a">$250.00</span></div>'
+        + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>'
       + '</div></div>';
 }
 
@@ -2971,6 +3012,212 @@ function closePaymentSplitModal(){
 <!-- Global Copilot drawer slot: rendered on top-level so it can overlay any screen -->
 <div id="s3-copilot-slot"></div>
 
+<!-- Global slots reusable across scenarios -->
+<div id="s2-widget-slot"></div>
+<div id="s4-modal-slot"></div>
+
+<!-- ============================================================
+     SCENARIO 4 — Resolve grouped errors in-place on Order Review
+     ============================================================ -->
+
+<!-- S4.1 EMAIL -->
+<div class="screen" id="s4-email">
+  <div class="stage" style="background:#e9eaed;padding:32px 0;overflow:auto">
+    <div class="otlk">
+      <div class="otlk-top"><div class="ol"><span class="oi"><svg width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="4" width="13" height="16" rx="2" fill="#0f6cbd"/><path d="M8.5 8.2c-1.9 0-3.1 1.6-3.1 3.8s1.2 3.8 3.1 3.8 3.1-1.6 3.1-3.8-1.2-3.8-3.1-3.8zm0 6.1c-.9 0-1.5-1-1.5-2.3s.6-2.3 1.5-2.3 1.5 1 1.5 2.3-.6 2.3-1.5 2.3z" fill="#fff"/><path d="M16 9.2l6-2.2v10l-6-2.2z" fill="#0f6cbd"/></svg></span>Outlook</div><div class="osearch">Search</div><div class="owin"><span>&#8211;</span><span>&#9633;</span><span>&#10005;</span></div></div>
+      <div class="otlk-actions"><span class="oa"><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M9 14l-5-5 5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg>Reply</span><span class="oa"><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg>Forward</span></div>
+      <div class="otlk-msg">
+        <div class="otlk-subj">INTUITC-9358 - Your contractual order needs fixes</div>
+        <div class="otlk-from"><div class="otlk-av">IE</div><div class="otlk-fm"><div class="r1"><span class="snd">Intuit Enterprise Suite</span><span class="adr">&lt;enterprise-suite@notifications.intuit.com&gt;</span><span class="otlk-dt">Sun 2/1/2026 2:38 PM</span></div><div class="to">To: Dana Alvarez &lt;dana.alvarez@sparkconstructions.com&gt;</div></div></div>
+        <div class="otlk-prev">A few entities in your order for Spark Constructions need your attention</div>
+      </div>
+      <div class="otlk-pane">
+        <div class="iesmail">
+          <div class="ies-hd"><div class="lg">INTUIT<span>Enterprise Suite</span></div><div class="pb">Powered by <span class="qb"><span class="ball"></span>quickbooks</span></div></div>
+          <div class="ies-b">
+            <div class="ies-col">
+              <div style="width:56px;height:56px;border-radius:50%;background:#fef0e6;display:flex;align-items:center;justify-content:center;margin:0 auto"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#c9500f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+              <p class="ies-h1">Your order needs fixes</p>
+              <p class="ies-p">Your order for Spark Constructions placed on Aug 20, 2026 has a few errors. Click here to review them.</p>
+              <div class="ies-btn hotspot" onclick="show('s4-login')">Review order</div>
+            </div>
+            <div class="ies-card"><h3>What needs attention</h3><div class="ies-fl"><div>Contract: INTUITC-9358</div><div>Order ID: 56781234</div><div>Failed: 12 of 24 entities</div><div>Grouped by: Payment method, Address</div><div>Status: Needs your action</div></div></div>
+          </div>
+          <div class="ies-ft"><p>This message was sent to dana.alvarez@sparkconstructions.com at the request of an existing Intuit Enterprise Suite customer.</p><p>&copy; 2026 Intuit Inc.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S4.2 LOGIN -->
+<div class="screen" id="s4-login">
+  <div class="stage">
+    <div class="frame1440" style="background:#f4f6f8">
+      <div class="shell-header-slot"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding-top:120px">
+        <div style="width:440px;background:#fff;border:1px solid #c3ced5;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.08);padding:40px">
+          <div style="width:48px;height:48px;background:#00254a;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px;margin-bottom:24px">IES</div>
+          <h1 style="font-size:28px;font-weight:600;color:#21262a;margin-bottom:8px">Sign in to your account</h1>
+          <p style="font-size:14px;color:#6b6c72;margin-bottom:28px">Access the Customer Order Portal to review and run your orders.</p>
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px">Email address</label>
+          <input id="s4-email-input" type="email" placeholder="you@company.com" oninput="s4CheckLogin()" style="width:100%;height:44px;border:1px solid #d4d7dc;border-radius:4px;padding:0 12px;font-size:14px;font-family:inherit;color:#393a3d;margin-bottom:20px;outline:none">
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px">Password</label>
+          <div style="position:relative;margin-bottom:12px">
+            <input id="s4-pass-input" type="password" placeholder="Enter your password" oninput="s4CheckLogin()" style="width:100%;height:44px;border:1px solid #d4d7dc;border-radius:4px;padding:0 56px 0 12px;font-size:14px;font-family:inherit;color:#393a3d;outline:none">
+            <span onclick="s4TogglePass()" style="position:absolute;right:12px;top:14px;color:#205ea3;font-weight:500;font-size:13px;cursor:pointer">Show</span>
+          </div>
+          <div style="text-align:right;margin-bottom:24px"><a style="color:#205ea3;font-size:13px;font-weight:500">Forgot password?</a></div>
+          <button id="s4-signin-btn" disabled onclick="s4EnterReview()" style="width:100%;height:48px;background:#b7c2cb;color:#fff;font-weight:600;font-size:16px;border-radius:4px;cursor:not-allowed;border:none">Sign in</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S4.3 ORDER REVIEW with grouped in-place fixes -->
+<div class="screen" id="s4-review">
+  <div class="stage"><div class="frame1440" data-shell="orders" id="s4-review-frame">
+    <div class="shell-header-slot"></div>
+    <div class="shell-body">
+      <div class="shell-rail-slot"></div>
+      <div class="content"><div class="content-center">
+        <div class="pr-headwrap">
+          <a class="back-btn hotspot" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to orders</a>
+          <div class="pr-header">
+            <div class="pr-title">Order Review</div>
+            <div class="pr-header-right"><a class="contact-mgr-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#393a3d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 10-9 9"/><path d="M3 14v-2a2 2 0 012-2h1v6H5a2 2 0 01-2-2z"/><path d="M21 14v-2a2 2 0 00-2-2h-1v6h1a2 2 0 002-2z"/><path d="M18 19a3 3 0 01-3 3h-3"/></svg>Contact account manager</a><div class="copilot-pill"><span class="prop"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M15.8773 6.05622L12.454 9.47989H17.2918V11.5139H12.4568L15.8773 14.9348L14.4389 16.3735L11.017 12.9509V17.792H8.98332V12.9502L5.56072 16.3735L4.12232 14.9348L7.54421 11.5125H2.7085V9.47847H7.54421L4.12232 6.05622L5.56072 4.61747L9.99945 9.05692L14.4389 4.61747L15.8773 6.05622Z" fill="#236CFF"/><path d="M10.0009 3.20898C10.9236 3.20902 11.6717 3.95708 11.6718 4.87987C11.6718 5.80272 10.9236 6.55108 10.0009 6.55112C9.07811 6.55112 8.32999 5.80274 8.32999 4.87987C8.33005 3.95706 9.07815 3.20898 10.0009 3.20898Z" fill="#236CFF"/></svg></span>Intuit Assist</div></div>
+          </div>
+        </div>
+        <div class="pr-body" id="s4-review-body">
+          <!-- error hero (mirrors s2/s3 structure so it inherits the same styling) -->
+          <div class="hero-card err" data-collapsible data-collapsed="false" id="s4-hero-card">
+            <div class="hero-top" data-collapse-header onclick="toggleCollapse(this)">
+              <div class="hero-top-left">
+                <div class="hero-company">
+                  <div style="display:flex;align-items:center;gap:10px">
+                    <span class="cn">Spark Constructions</span>
+                    <span class="badge-neg" id="s4-hero-badge"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M18.37 15.02L11.46 2.57a1.7 1.7 0 0 0-2.92 0L1.63 15.02a1.7 1.7 0 0 0 1.46 2.48h13.83a1.7 1.7 0 0 0 1.45-2.48Z" fill="#D52B1E"/><rect x="9.17" y="6.67" width="1.66" height="5" rx=".83" fill="#fff"/><circle cx="10" cy="14.17" r=".92" fill="#fff"/></svg></span><span class="lbl">Needs fixes</span></span>
+                  </div>
+                  <span class="cid">934145839208</span>
+                </div>
+                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a>
+              </div>
+              <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+            <div data-collapse-body>
+              <div class="hr"></div>
+              <div class="hero-mid">
+                <div class="hero-mid-left" style="gap:12px">
+                  <div class="hero-err-icon" id="s4-hero-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="-7" y="-6" width="70" height="68" rx="34" fill="#FAD7D6"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25.69 14.67c1.03-1.78 3.6-1.78 4.62 0l10.97 19c.99 1.72-.18 3.86-2.12 4l-.19.01H17.03c-1.99 0-3.25-2.09-2.4-3.83l.09-.17 10.97-19zM28.58 15.67c-.26-.44-.9-.44-1.15 0L16.45 34.67c-.26.44.06 1 .58 1H38.97c.51 0 .83-.56.57-1L28.58 15.67z" fill="#D52B1E"/><rect x="26.67" y="23.67" width="2.67" height="7.34" rx="1.33" fill="#D52B1E"/><circle cx="28" cy="33" r="1.33" fill="#D52B1E"/></svg></div>
+                  <div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:25px;font-weight:700;color:#21262a" id="s4-hero-title">Your order is partially completed</div></div>
+                </div>
+                <div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
+              </div>
+              <div class="hero-foot">
+                <div class="hr"></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;width:100%">
+                  <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:500;color:#6b6c72">Order billed on</span><span style="font-size:14px;font-weight:500;color:#21262a">Aug 20, 2026</span></div>
+                  <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:500;color:#6b6c72">Order ID</span><span style="font-size:14px;font-weight:500;color:#21262a">83180912</span></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;align-items:flex-end"><span style="font-size:12px;font-weight:500;color:#6b6c72">Payment split up</span><a onclick="openPaymentSplitModal()" style="color:#0077c5;font-size:14px;font-weight:500;cursor:pointer">View details</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Need fixes — grouped, in-place resolution -->
+          <div class="err-widget" id="s4-err-widget"></div>
+          <!-- order summary collapsed -->
+          <div class="order-summary" data-collapsible data-collapsed="true">
+            <div class="os-head" data-collapse-header onclick="toggleCollapse(this)"><span class="os-title">Order breakdown</span><span class="os-chev chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div>
+            <div data-collapse-body style="display:none">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Intuit Enterprise Suite</span><span style="font-size:13px;color:#6b6c72">Includes 1 Entity, 6 Standard Users, 4 Dimensions, and Bill Pay Elite</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$715.00</span></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Additional Entities</span><span style="font-size:13px;color:#6b6c72">13 entities included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$514.00</span></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div></div>
+</div>
+
+<style>
+/* Scenario 4 — grouped in-place fix rows (IDS-compliant, no icons) */
+.s4-widget-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 24px;border-bottom:1px solid #e2e9ed}
+.s4-widget-head-l{display:flex;flex-direction:column;gap:4px}
+.s4-widget-title{font-family:var(--font-body);font-size:18px;font-weight:600;color:#393a3d;letter-spacing:-.1px}
+.s4-widget-sub{font-size:13px;color:#6b6c72}
+.s4-widget-legend{font-size:12px;color:#6b6c72}
+.s4-group-list{display:flex;flex-direction:column}
+.s4-group-row.cat-card{border:none;border-radius:0;padding:16px 32px;border-bottom:1px solid #e2e9ed;background:#fff}
+.s4-group-row.cat-card:last-child{border-bottom:none}
+.s4-group-row.cat-card.actionable:hover{background:#fafcff}
+.s4-group-row .cat-info{display:flex;flex-direction:column;gap:4px;min-width:0}
+.s4-group-row .cat-eyebrow{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:1px;color:#6b6c72;text-transform:uppercase}
+.s4-group-row .cat-title{font-family:var(--font-body);font-size:16px;font-weight:600;color:#393a3d;line-height:1.3}
+.s4-group-row .cat-sub{font-size:13px;color:#6b6c72;line-height:1.5}
+.s4-group-actions{display:flex;align-items:center;gap:24px;flex:0 0 auto}
+.s4-view-link{font-family:var(--font-body);font-size:14px;font-weight:500;color:#0365ac;cursor:pointer;text-decoration:none}
+.s4-view-link:hover{text-decoration:underline}
+.s4-resolve-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-body);font-size:14px;font-weight:500;color:#0365ac;cursor:pointer;text-decoration:none}
+.s4-resolve-link:hover{text-decoration:underline}
+.s4-resolve-done{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-body);font-size:14px;font-weight:500;color:#8d9096}
+.s4-mini-spin{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid #d4d7dc;border-top-color:#0077c5;animation:s4Spin .8s linear infinite}
+@keyframes s4Spin{to{transform:rotate(360deg)}}
+.s4-resolve-btn{min-width:120px;font-weight:600}
+.s4-resolve-btn-disabled{background:#fff !important;color:#8d9096 !important;border:1px solid #d4d7dc !important;cursor:not-allowed !important;font-weight:600}
+.s4-resolve-btn-disabled:hover{background:#fff !important}
+.s4-view-details-btn{min-width:120px;font-weight:600}
+
+/* View details drawer — right-side, IDS Drawer/Small 404 */
+.s4-vd-scrim{position:fixed;top:56px;bottom:0;left:0;right:0;background:rgba(0,0,0,.35);z-index:1200;animation:scrimFadeIn .18s ease-out}
+.s4-vd{position:fixed;top:56px;right:max(0px,calc(50% - 720px));bottom:0;width:460px;background:#fff;box-shadow:-6px 0 24px rgba(0,0,0,.16);display:flex;flex-direction:column;animation:s4vdSlide .28s cubic-bezier(.2,.7,.2,1);z-index:1201}
+@keyframes s4vdSlide{from{transform:translateX(24px);opacity:0}to{transform:translateX(0);opacity:1}}
+.s4-vd-head{display:flex;align-items:flex-start;justify-content:space-between;padding:24px 28px 16px;border-bottom:1px solid #e2e9ed}
+.s4-vd-title{font-family:var(--font-body);font-size:20px;font-weight:600;color:#393a3d;line-height:1.3}
+.s4-vd-eyebrow{font-size:11px;font-weight:600;letter-spacing:1px;color:#6b6c72;text-transform:uppercase;margin-bottom:4px}
+.s4-vd-close{cursor:pointer;color:#393a3d;display:inline-flex;padding:4px}
+.s4-vd-body{padding:20px 28px;overflow:auto;flex:1}
+.s4-vd-issue{background:#fdecec;border:1px solid #f4b9b4;border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;margin-bottom:20px}
+.s4-vd-issue-ic{color:#b80000;display:inline-flex;flex-shrink:0;margin-top:1px}
+.s4-vd-issue-txt{font-size:13px;color:#393a3d;line-height:1.5}
+.s4-vd-issue-txt b{color:#21262a}
+.s4-vd-section-title{font-family:var(--font-body);font-size:13px;font-weight:600;color:#6b6c72;text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px}
+.s4-vd-diff{background:#f8fafb;border:1px solid #e2e9ed;border-radius:8px;padding:14px 16px;margin-bottom:16px}
+.s4-vd-diff-row{display:flex;justify-content:space-between;gap:16px;padding:8px 0;border-top:1px solid #e2e9ed}
+.s4-vd-diff-row:first-child{border-top:none;padding-top:0}
+.s4-vd-diff-label{font-size:12px;color:#6b6c72;flex:0 0 auto}
+.s4-vd-diff-val{text-align:right;max-width:260px;font-size:13px;font-weight:600;color:#393a3d;line-height:1.4}
+.s4-vd-diff-val.old{color:#b80000;text-decoration:line-through}
+.s4-vd-diff-val.new{color:#108000}
+.s4-vd-entity-list{margin-top:16px}
+.s4-vd-entity{padding:12px 0;border-top:1px solid #eceef1}
+.s4-vd-entity:first-child{border-top:none}
+.s4-vd-entity-co{font-size:14px;font-weight:600;color:#393a3d}
+.s4-vd-entity-id{font-size:12px;color:#6b6c72;margin-top:2px}
+.s4-vd-foot{display:flex;justify-content:flex-end;gap:12px;padding:16px 28px;border-top:1px solid #e2e9ed}
+
+/* View entities modal — IDS Modal Dialog conventions (r-x-large 12) */
+.s4-mv-scrim{position:fixed;inset:0;background:rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;z-index:1200;animation:scrimFadeIn .18s ease-out}
+.s4-mv{width:576px;max-height:70vh;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,.20);display:flex;flex-direction:column;overflow:hidden;animation:modalIn .22s cubic-bezier(.2,.7,.2,1)}
+.s4-mv-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:24px 32px 12px}
+.s4-mv-title{font-family:var(--font-body);font-size:20px;font-weight:600;color:#393a3d;line-height:1.3}
+.s4-mv-sub{font-size:14px;color:#6b6c72;margin-top:4px}
+.s4-mv-close{cursor:pointer;color:#393a3d;display:inline-flex;padding:4px}
+.s4-mv-body{padding:8px 32px 4px;overflow:auto}
+.s4-mv-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid #eceef1;gap:16px}
+.s4-mv-row:first-child{border-top:none}
+.s4-mv-co{font-size:14px;font-weight:500;color:#393a3d}
+.s4-mv-id{font-size:12px;color:#6b6c72;margin-top:2px}
+.s4-mv-status{font-size:11px;font-weight:600;padding:2px 8px;border-radius:9999px;letter-spacing:.2px}
+.s4-mv-status.pending{background:#fdecec;color:#b80000}
+.s4-mv-status.done{background:#e6f4ec;color:#108000}
+.s4-mv-foot{display:flex;justify-content:flex-end;gap:12px;padding:20px 32px;border-top:1px solid #e2e9ed}
+
+.hero-card.suc .hero-err-icon svg rect{fill:#DFF4E6}
+</style>
+
 <script>
 /* ===================== SCENARIO 3 ENGINE ===================== */
 var S3 = {
@@ -3002,7 +3249,7 @@ function s3TogglePass(){var el=document.getElementById('s3-pass-input');el.type=
 function startScenario3(){
   // reset shared state
   S2.status={}; S2.mode='payment'; S2._completed=false; S2._pending=[];
-  S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null;
+  S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null;
   if(typeof s2CompleteTimer!=='undefined' && s2CompleteTimer){ clearTimeout(s2CompleteTimer); s2CompleteTimer=null; }
   if(typeof s2FinalizeAnim!=='undefined' && s2FinalizeAnim){ clearInterval(s2FinalizeAnim); s2FinalizeAnim=null; }
   // scenario 3 state
@@ -3130,7 +3377,7 @@ function s3ShowCompletedReview(){
    flips the S3 flag so the copilot flyout + drawer overlay on top. */
 function s3GoEntityList(){
   S3._active=true;
-  S2.mode='all'; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null;
+  S2.mode='all'; S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null;
   show('s2-entity');
   s2RenderEntity();
 }
@@ -3970,6 +4217,340 @@ if(typeof hydrateShell==='function') hydrateShell();
   if(s3) s3.querySelectorAll('.back-btn').forEach(function(a){
     if(/Back to orders/.test(a.textContent)){ a.classList.add('hotspot'); a.setAttribute('onclick',"showMyOrders('s3')"); }
   });
+})();
+
+/* =============================================================
+   SCENARIO 4 ENGINE — grouped in-place fixes on Order Review
+   ============================================================= */
+var S4 = {
+  _active:false, _completed:false, status:{}, _pendingGroup:null,
+  groups:[
+    { id:'pay-visa4477', cat:'payment', pm:'Visa *4477',
+      label:'Visa *4477 payment failures',
+      sub:"Payment couldn't be processed for these entities",
+      entities:[
+        {co:'Spark Construction NE LLC', id:'9341452326000858', addr:'123 Street Ave', pm:'Visa *4477'},
+        {co:'Coastal Roofing Solutions', id:'9341452944103867', addr:'429 Post St', pm:'Visa *4477'},
+        {co:'Highpoint Contracting Co.', id:'9341452887453221', addr:'456 Main St', pm:'Visa *4477'},
+        {co:'Desert Solar Solutions', id:'9341456012785941', addr:'777 Tecca Way', pm:'Visa *4477'}
+      ]
+    },
+    { id:'pay-amex7744', cat:'payment', pm:'Amex *7744',
+      label:'Amex *7744 payment failures',
+      sub:"Payment couldn't be processed for these entities",
+      entities:[
+        {co:'Spark Solar TX LLC', id:'9341453117629045', addr:'334 Hyde St', pm:'Amex *7744'},
+        {co:'Mountain Solar Partners', id:'9341455203981204', addr:'20 Innovation Way', pm:'Amex *7744'},
+        {co:'Bay Area Construction Inc.', id:'9341455891273465', addr:'33 Route 66', pm:'Amex *7744'},
+        {co:'Northern Building Group', id:'9341454912035678', addr:'10 Data Drive', pm:'Amex *7744'}
+      ]
+    },
+    { id:'addr-oak', cat:'address', addr:'88 Oak Lane',
+      label:'Address issues · 88 Oak Lane',
+      sub:"Addresses couldn't be validated for these entities",
+      entities:[
+        {co:'Leary Industries', id:'9341457001294633', addr:'88 Oak Lane', pm:'Visa *4477'},
+        {co:'Summit Mechanical LLC', id:'9341457338820194', addr:'88 Oak Lane', pm:'Amex *7744'}
+      ]
+    },
+    { id:'addr-cedar', cat:'address', addr:'12 Cedar Blvd',
+      label:'Address issues · 12 Cedar Blvd',
+      sub:"Addresses couldn't be validated for these entities",
+      entities:[
+        {co:'Lakeside Renovations', id:'9341456782139458', addr:'12 Cedar Blvd', pm:'Visa *4477'},
+        {co:'Great Plains Electrical', id:'9341456334908125', addr:'12 Cedar Blvd', pm:'Visa *4477'}
+      ]
+    }
+  ]
+};
+
+function s4GroupById(gid){ for(var i=0;i<S4.groups.length;i++){ if(S4.groups[i].id===gid) return S4.groups[i]; } return null; }
+function s4FindEntity(id){
+  for(var i=0;i<S4.groups.length;i++){
+    var g=S4.groups[i];
+    for(var j=0;j<g.entities.length;j++){ if(g.entities[j].id===id) return g.entities[j]; }
+  }
+  return null;
+}
+function s4GroupStatus(g){
+  var res=g.entities.filter(function(e){return S4.status[e.id]==='resolved';}).length;
+  var prog=g.entities.filter(function(e){return S4.status[e.id]==='progress';}).length;
+  return { res:res, prog:prog, total:g.entities.length, done: res===g.entities.length, resolving: prog>0 };
+}
+function s4Totals(){
+  var total=0, resolved=0;
+  S4.groups.forEach(function(g){ total+=g.entities.length; g.entities.forEach(function(e){ if(S4.status[e.id]==='resolved') resolved++; }); });
+  return {total:total, resolved:resolved};
+}
+
+function startScenario4(){
+  if(typeof S1!=='undefined'){ S1._completed=false; }
+  if(typeof S2!=='undefined'){
+    S2.status={}; S2.mode='payment'; S2._completed=false; S2._pending=[];
+    S2.filters={issueType:'',payment:'all',search:''}; S2._lockedCat=null; S2._lockedGroup=null;
+  }
+  if(typeof S3!=='undefined'){ S3._active=false; }
+  s4CancelAllResolutionTimers();
+  S4._active=true; S4._completed=false; S4.status={}; S4._pendingGroup=null;
+  S4.groups.forEach(function(g){ g._appliedFix=null; });
+  if(typeof unlockPageScroll==='function') unlockPageScroll();
+  show('s4-email');
+}
+function s4CheckLogin(){
+  var e=document.getElementById('s4-email-input').value;
+  var p=document.getElementById('s4-pass-input').value;
+  var b=document.getElementById('s4-signin-btn');
+  var ok=e.length>0 && p.length>0;
+  b.disabled=!ok;
+  b.style.background=ok?'#0077c5':'#b7c2cb';
+  b.style.cursor=ok?'pointer':'not-allowed';
+}
+function s4TogglePass(){ var el=document.getElementById('s4-pass-input'); el.type=el.type==='password'?'text':'password'; }
+function s4EnterReview(){ show('s4-review'); s4RenderReview(); }
+
+/* ---- render Need fixes as a lengthy horizontal row per group (IDS/cat-card) ---- */
+function s4RenderReview(){
+  var w=document.getElementById('s4-err-widget'); if(!w) return;
+  if(S4._completed){ s4ShowCompletedReview(); return; }
+  var t=s4Totals();
+  var stillFailed=t.total-t.resolved;
+  var head =
+    '<div class="s4-widget-head">'
+      + '<div class="s4-widget-head-l">'
+        + '<span class="s4-widget-title">Need fixes</span>'
+        + '<span class="s4-widget-sub"><b style="color:#393a3d;font-weight:600">'+stillFailed+'</b> of '+t.total+' entities still need attention · grouped by root cause</span>'
+      + '</div>'
+    + '</div>';
+  var rows='';
+  S4.groups.forEach(function(g){
+    var st=s4GroupStatus(g);
+    var catLabel = g.cat==='payment' ? 'PAYMENT' : 'ADDRESS';
+    var titleLabel = g.cat==='payment' ? g.pm : g.addr;
+    var badge, resolve, cls;
+    if(st.done){
+      badge='<span class="badge-pos"><span class="ic">'+ICO_POS+'</span><span class="lbl">Resolved '+st.res+'/'+st.total+'</span></span>';
+      resolve='<button class="btn btn-sm btn-secondary s4-view-details-btn" onclick="event.stopPropagation();s4ViewDetails(\''+g.id+'\')">View details</button>';
+      cls='';
+    } else if(st.resolving){
+      badge='<span class="badge-neutral"><span class="ic"><span class="s4-mini-spin"></span></span><span class="lbl">Resolving '+st.res+' of '+st.total+'…</span></span>';
+      resolve='<button class="btn btn-sm s4-resolve-btn s4-resolve-btn-disabled" disabled>Resolve now</button>';
+      cls='';
+    } else {
+      badge='<span class="badge-neg"><span class="ic">'+ICO_NEG+'</span><span class="lbl">'+st.total+' issue'+(st.total>1?'s':'')+'</span></span>';
+      resolve='<button class="btn btn-sm btn-secondary s4-resolve-btn" onclick="event.stopPropagation();s4OpenGroup(\''+g.id+'\')">Resolve now</button>';
+      cls='';
+    }
+    rows +=
+      '<div class="cat-card s4-group-row'+cls+'">'
+        + '<div class="cat-info">'
+          + '<div class="cat-eyebrow">'+catLabel+'</div>'
+          + '<div class="cat-title-row"><span class="cat-title">'+titleLabel+'</span>'+badge+'</div>'
+          + '<div class="cat-sub">'+g.sub+'</div>'
+        + '</div>'
+        + '<div class="s4-group-actions">'
+          + '<a class="s4-view-link" onclick="event.stopPropagation();s4ViewEntities(\''+g.id+'\')">View entities ('+st.total+')</a>'
+          + resolve
+        + '</div>'
+      + '</div>';
+  });
+  w.innerHTML = head + '<div class="s4-group-list">'+rows+'</div>';
+}
+
+/* ---- Open the appropriate drawer for a group ---- */
+function s4OpenGroup(gid){
+  var g=s4GroupById(gid); if(!g) return;
+  S4._pendingGroup=gid;
+  // populate shared pending so shared widget markup works
+  S2._pending = g.entities.map(function(e){ return e.id; });
+  s2OpenWidgetInternal();
+}
+
+/* ---- View entities modal ---- */
+function s4ViewEntities(gid){
+  var g=s4GroupById(gid); if(!g) return;
+  if(typeof lockPageScroll==='function') lockPageScroll();
+  var slot=document.getElementById('s4-modal-slot');
+  var rows = g.entities.map(function(e){
+    var done = S4.status[e.id]==='resolved';
+    return '<div class="s4-mv-row">'
+      + '<div><div class="s4-mv-co">'+e.co+'</div><div class="s4-mv-id">Company ID · '+e.id+'</div></div>'
+      + '<span class="s4-mv-status '+(done?'done':'pending')+'">'+(done?'Resolved':'Needs fix')+'</span>'
+    + '</div>';
+  }).join('');
+  var subLabel = g.cat==='payment' ? g.pm : g.addr;
+  slot.innerHTML =
+    '<div class="s4-mv-scrim" onclick="if(event.target===this)s4CloseViewEntities()">'
+      + '<div class="s4-mv">'
+        + '<div class="s4-mv-head">'
+          + '<div><div class="s4-mv-title">Affected entities</div><div class="s4-mv-sub">'+g.label+' · '+g.entities.length+' entit'+(g.entities.length===1?'y':'ies')+'</div></div>'
+          + '<span class="s4-mv-close" onclick="s4CloseViewEntities()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>'
+        + '</div>'
+        + '<div class="s4-mv-body">'+rows+'</div>'
+        + '<div class="s4-mv-foot"><button class="btn btn-sm btn-tertiary" onclick="s4CloseViewEntities()">Close</button></div>'
+      + '</div>'
+    + '</div>';
+}
+function s4CloseViewEntities(){ var s=document.getElementById('s4-modal-slot'); if(s) s.innerHTML=''; if(typeof unlockPageScroll==='function') unlockPageScroll(); }
+
+/* ---- View details drawer: what changed for a resolved group ---- */
+function s4ViewDetails(gid){
+  var g=s4GroupById(gid); if(!g) return;
+  if(typeof lockPageScroll==='function') lockPageScroll();
+  var fix=g._appliedFix||{};
+  var catLabel = g.cat==='payment' ? 'Payment issue resolved' : 'Address issue resolved';
+  var issueText = g.cat==='payment'
+    ? 'Payment on <b>'+g.pm+'</b> was declined for '+g.entities.length+' entit'+(g.entities.length===1?'y':'ies')+'. A new payment method was applied and the charges succeeded.'
+    : 'The address on <b>'+g.addr+'</b> couldn\'t be validated for '+g.entities.length+' entit'+(g.entities.length===1?'y':'ies')+'. An updated address was saved and validated.';
+  var diffRows;
+  if(g.cat==='payment'){
+    diffRows =
+      '<div class="s4-vd-diff-row"><span class="s4-vd-diff-label">Was</span><span class="s4-vd-diff-val old">'+g.pm+'</span></div>'
+      + '<div class="s4-vd-diff-row"><span class="s4-vd-diff-label">Now</span><span class="s4-vd-diff-val new">'+(fix.newPm||'Selected payment method')+'</span></div>'
+      + '<div class="s4-vd-diff-row"><span class="s4-vd-diff-label">Applied</span><span class="s4-vd-diff-val">'+(fix.when||'Just now')+'</span></div>';
+  } else {
+    diffRows =
+      '<div class="s4-vd-diff-row"><span class="s4-vd-diff-label">Was</span><span class="s4-vd-diff-val old">'+g.addr+'</span></div>'
+      + '<div class="s4-vd-diff-row"><span class="s4-vd-diff-label">Now</span><span class="s4-vd-diff-val new">'+(fix.newAddr||'Updated address')+'</span></div>'
+      + '<div class="s4-vd-diff-row"><span class="s4-vd-diff-label">Applied</span><span class="s4-vd-diff-val">'+(fix.when||'Just now')+'</span></div>';
+  }
+  var entities = g.entities.map(function(e){
+    return '<div class="s4-vd-entity"><div class="s4-vd-entity-co">'+e.co+'</div><div class="s4-vd-entity-id">Company ID · '+e.id+'</div></div>';
+  }).join('');
+  var slot=document.getElementById('s4-modal-slot');
+  slot.innerHTML =
+    '<div class="s4-vd-scrim" onclick="if(event.target===this)s4CloseViewDetails()"></div>'
+    + '<div class="s4-vd">'
+      + '<div class="s4-vd-head">'
+        + '<div><div class="s4-vd-eyebrow">'+(g.cat==='payment'?'PAYMENT':'ADDRESS')+' · RESOLVED</div><div class="s4-vd-title">'+catLabel+'</div></div>'
+        + '<span class="s4-vd-close" onclick="s4CloseViewDetails()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg></span>'
+      + '</div>'
+      + '<div class="s4-vd-body">'
+        + '<div class="s4-vd-issue"><span class="s4-vd-issue-ic"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M18.37 15.02L11.46 2.57a1.7 1.7 0 00-2.92 0L1.63 15.02a1.7 1.7 0 001.46 2.48h13.83a1.7 1.7 0 001.45-2.48Z" fill="#B80000"/><rect x="9.17" y="6.67" width="1.66" height="5" rx=".83" fill="#fff"/><circle cx="10" cy="14.17" r=".92" fill="#fff"/></svg></span><span class="s4-vd-issue-txt">'+issueText+'</span></div>'
+        + '<div class="s4-vd-section-title">What changed</div>'
+        + '<div class="s4-vd-diff">'+diffRows+'</div>'
+        + '<div class="s4-vd-section-title">Applied to '+g.entities.length+' entit'+(g.entities.length===1?'y':'ies')+'</div>'
+        + '<div class="s4-vd-entity-list">'+entities+'</div>'
+      + '</div>'
+      + '<div class="s4-vd-foot"><button class="btn btn-sm btn-primary" onclick="s4CloseViewDetails()">Done</button></div>'
+    + '</div>';
+}
+function s4CloseViewDetails(){ var s=document.getElementById('s4-modal-slot'); if(s) s.innerHTML=''; if(typeof unlockPageScroll==='function') unlockPageScroll(); }
+
+/* ---- Completed review ---- */
+function s4ShowCompletedReview(){
+  // flip hero to success state
+  var hero=document.getElementById('s4-hero-card'); if(hero) hero.classList.remove('err'), hero.classList.add('suc');
+  var badge=document.getElementById('s4-hero-badge');
+  if(badge){
+    badge.className='badge-pos';
+    badge.innerHTML='<span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#0f7d4d"/><path d="M6 10.4l2.6 2.6L14.5 7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lbl">All fixes applied</span>';
+  }
+  var title=document.getElementById('s4-hero-title'); if(title) title.textContent='Your order is completed';
+  var icon=document.getElementById('s4-hero-icon');
+  if(icon) icon.innerHTML='<svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect width="56" height="56" rx="28" fill="#DFF4E6"/><path d="M17 28.5L25 36.5L40 20.5" stroke="#0f7d4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  var w=document.getElementById('s4-err-widget');
+  if(w){
+    w.innerHTML =
+      '<div style="background:#f7fbf8;border:1px solid #cfe8d8;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:16px">'
+        + '<div style="width:44px;height:44px;border-radius:50%;background:#e6f4ec;display:flex;align-items:center;justify-content:center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f7d4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>'
+        + '<div style="flex:1"><div style="font-family:var(--font-body);font-size:17px;font-weight:600;color:#21262a">All '+s4Totals().total+' failed entities are now resolved</div>'
+        + '<div style="font-size:13px;color:#6b6c72;margin-top:2px">Every group has been fixed directly from Order Review. Your order is complete.</div></div>'
+      + '</div>';
+  }
+}
+
+/* ---- Sequential per-entity resolution inside a group: 15s per entity ---- */
+var _s4GroupTimers = {}; // gid -> timeout id
+function s4StartGroupResolution(gid){
+  if(_s4GroupTimers[gid]) return; // already resolving
+  _s4ResolveNext(gid);
+}
+function _s4ResolveNext(gid){
+  var g=s4GroupById(gid); if(!g){ delete _s4GroupTimers[gid]; return; }
+  // find the next 'progress' entity in this group
+  var next=null;
+  for(var i=0;i<g.entities.length;i++){
+    if(S4.status[g.entities[i].id]==='progress'){ next=g.entities[i]; break; }
+  }
+  if(!next){ delete _s4GroupTimers[gid]; return; }
+  _s4GroupTimers[gid]=setTimeout(function(){
+    S4.status[next.id]='resolved';
+    if(document.getElementById('s4-review').classList.contains('active')) s4RenderReview();
+    // continue with next entity in this group
+    delete _s4GroupTimers[gid];
+    _s4ResolveNext(gid);
+    // when everything is resolved across all groups, flip hero
+    if(s4Totals().resolved===s4Totals().total){
+      setTimeout(function(){ S4._completed=true; s4ShowCompletedReview(); }, 500);
+    }
+  }, 15000);
+}
+function s4CancelAllResolutionTimers(){
+  Object.keys(_s4GroupTimers).forEach(function(k){ clearTimeout(_s4GroupTimers[k]); });
+  _s4GroupTimers={};
+}
+
+/* ---- Overrides so shared S2 widget code routes to S4 when active ---- */
+(function(){
+  var _findOrig = window.s2FindRowById;
+  window.s2FindRowById = function(id){
+    if(S4._active){ var e=s4FindEntity(id); if(e) return e; }
+    return _findOrig(id);
+  };
+  var _catOrig = window.s2PendingCat;
+  window.s2PendingCat = function(){
+    if(S4._active && S4._pendingGroup){
+      var g=s4GroupById(S4._pendingGroup); if(g) return g.cat;
+    }
+    return _catOrig();
+  };
+  var _applyOrig = window.s2ApplyFix;
+  window.s2ApplyFix = function(){
+    if(S4._active && S4._pendingGroup){
+      var primary=document.querySelector('#s2-widget-slot .wg-foot .btn-primary');
+      if(primary && primary.classList.contains('btn-disabled')) return;
+      var g=s4GroupById(S4._pendingGroup);
+      if(g){
+        // Capture what the user changed so we can show it in "View details"
+        var applied={ when: new Date().toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}) };
+        if(g.cat==='payment'){
+          var num=document.getElementById('s2-cc-num');
+          if(num && num.value && num.value.replace(/\D/g,'').length>=12){
+            applied.newPm='Card *'+num.value.replace(/\D/g,'').slice(-4)+' (new)';
+          } else {
+            applied.newPm=s2PmLabelFromCard(document.querySelector('#s2-widget-slot .pay-card.sel'));
+          }
+        } else {
+          var v=function(id){var e=document.getElementById(id);return e?e.value.trim():'';};
+          applied.newAddr=[v('s2-addr-street'),v('s2-addr-apt'),v('s2-addr-city'),v('s2-addr-state'),v('s2-addr-zip')].filter(Boolean).join(', ');
+        }
+        g._appliedFix=applied;
+        // Mark all entities in the group as 'progress' — they'll resolve one at a time
+        g.entities.forEach(function(e){ S4.status[e.id]='progress'; });
+        s4StartGroupResolution(g.id);
+      }
+      S4._pendingGroup=null; S2._pending=[];
+      s2CloseWidget();
+      s4RenderReview();
+      return;
+    }
+    return _applyOrig();
+  };
+  // Note: intentionally NOT overriding s2CloseWidget — the address bulk flow
+  // calls s2CloseWidget() as an intermediate step (close warning → open address
+  // widget), so clearing S4._pendingGroup there breaks address resolution.
+  // pendingGroup is naturally reset by the next s4OpenGroup() call or by Apply.
+})();
+
+/* Reset S4 on Home too */
+(function(){
+  var _origGoHome = window.goHome;
+  window.goHome = function(){
+    if(typeof S4!=='undefined'){ S4._active=false; S4._completed=false; S4.status={}; S4._pendingGroup=null; }
+    if(typeof s4CancelAllResolutionTimers==='function') s4CancelAllResolutionTimers();
+    var slot=document.getElementById('s4-modal-slot'); if(slot) slot.innerHTML='';
+    return _origGoHome();
+  };
 })();
 </script>
 
