@@ -212,10 +212,11 @@ a{color:inherit;text-decoration:none;cursor:pointer}
 .hero-datewrap{display:flex;flex-direction:column;gap:10px;flex:1;min-width:0;padding-left:10px}
 .hero-datewrap .lbl{font-size:14px;font-weight:500;color:#21262a;letter-spacing:0;text-transform:none}
 .hero-info-tip:hover .hero-info-pop,.hero-info-tip:focus .hero-info-pop{display:block !important}
-.hero-date{font-family:var(--font-body);font-size:22px;font-weight:700;color:#21262a;line-height:1.3}
+.hero-date{font-family:var(--font-body);font-size:20px;font-weight:600;color:#21262a;line-height:1.3}
 .hero-date-actions{display:flex;gap:8px}
 .hero-amount{display:flex;flex-direction:column;align-items:flex-end;text-align:right;flex-shrink:0;white-space:nowrap}
-.hero-amount .amt{font-family:var(--font-body);font-size:22px;font-weight:700;color:#21262a;line-height:1.3}
+.hero-amount-lbl{font-size:14px;font-weight:500;color:#21262a;letter-spacing:0;text-transform:none;line-height:1.3}
+.hero-amount .amt{font-family:var(--font-body);font-size:24px;font-weight:700;color:#21262a;line-height:1.3}
 .hero-amount .tax{font-size:13px;color:var(--text-secondary)}
 .hero-foot{display:flex;flex-direction:column;gap:12px;width:100%}
 .hero-foot-row{display:flex;align-items:center;justify-content:space-between;width:100%;gap:16px}
@@ -642,7 +643,7 @@ document.getElementById('indexRoot').innerHTML = `
       <p style="font-size:17px;color:#6b6c72;max-width:640px;line-height:1.6">Choose a scenario to walk through the customer experience. Click the highlighted actions on each screen to move through the flow.</p>
     </div>
     <!-- cards -->
-    <div style="max-width:1200px;width:100%;margin:0 auto;padding:0 32px 64px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+    <div style="max-width:1400px;width:100%;margin:0 auto;padding:0 32px 64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
       <div class="uc-card" onclick="startScenario1()">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
           <div style="width:40px;height:40px;border-radius:10px;background:#e0edff;display:flex;align-items:center;justify-content:center">
@@ -650,7 +651,7 @@ document.getElementById('indexRoot').innerHTML = `
           </div>
           <span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8d9096">SCENARIO 1</span>
         </div>
-        <div style="font-size:21px;font-weight:700;color:#21262a;margin-bottom:10px;line-height:1.3">Review &amp; execute a scheduled order</div>
+        <div style="font-size:20px;font-weight:600;color:#21262a;margin-bottom:10px;line-height:1.3">Review &amp; execute a scheduled order</div>
         <div style="font-size:14px;color:#6b6c72;line-height:1.6;margin-bottom:16px">A signed contract is scheduled and ready. The customer reviews it and runs it immediately — with a validation check before execution.</div>
         <div class="uc-task"><div class="uc-task-label">YOUR TASK</div><div class="uc-task-body">Review the newly scheduled order and place it immediately.</div></div>
         <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#0077c5;margin-top:20px">Start flow <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -662,7 +663,7 @@ document.getElementById('indexRoot').innerHTML = `
           </div>
           <span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8d9096">SCENARIO 2</span>
         </div>
-        <div style="font-size:21px;font-weight:700;color:#21262a;margin-bottom:10px;line-height:1.3">Resolve errors in a partially-completed order</div>
+        <div style="font-size:20px;font-weight:600;color:#21262a;margin-bottom:10px;line-height:1.3">Resolve errors in a partially-completed order</div>
         <div style="font-size:14px;color:#6b6c72;line-height:1.6;margin-bottom:16px">A placed order ran but some entities failed. The customer reviews the errors and resolves payment and address issues in bulk.</div>
         <div class="uc-task"><div class="uc-task-label">YOUR TASK</div><div class="uc-task-body">Review the errors in a placed order and resolve them to completion.</div></div>
         <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#0077c5;margin-top:20px">Start flow <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -674,7 +675,7 @@ document.getElementById('indexRoot').innerHTML = `
           </div>
           <span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8d9096">SCENARIO 3</span>
         </div>
-        <div style="font-size:21px;font-weight:700;color:#21262a;margin-bottom:10px;line-height:1.3">Resolve errors with a different approach</div>
+        <div style="font-size:20px;font-weight:600;color:#21262a;margin-bottom:10px;line-height:1.3">Resolve errors with a different approach</div>
         <div style="font-size:14px;color:#6b6c72;line-height:1.6;margin-bottom:16px">A placed order ran but some entities failed. The customer reviews the errors and resolves payment and address issues in bulk.</div>
         <div class="uc-task"><div class="uc-task-label">YOUR TASK</div><div class="uc-task-body">Review the errors in a placed order and resolve them to completion.</div></div>
         <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#236cff;margin-top:20px">Start flow <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#236cff" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
@@ -686,13 +687,25 @@ document.getElementById('indexRoot').innerHTML = `
           </div>
           <span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8d9096">SCENARIO 4</span>
         </div>
-        <div style="font-size:21px;font-weight:700;color:#21262a;margin-bottom:10px;line-height:1.3">Resolve grouped errors in-place</div>
+        <div style="font-size:20px;font-weight:600;color:#21262a;margin-bottom:10px;line-height:1.3">Resolve grouped errors in-place</div>
         <div style="font-size:14px;color:#6b6c72;line-height:1.6;margin-bottom:16px">A placed order ran but some entities failed. The review page groups failures by root cause so the customer can fix each group without visiting a separate list.</div>
         <div class="uc-task"><div class="uc-task-label">YOUR TASK</div><div class="uc-task-body">Resolve every failure group directly from the order review page.</div></div>
         <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#2ca01c;margin-top:20px">Start flow <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ca01c" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
       </div>
+      <div class="uc-card" onclick="startScenario5()">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+          <div style="width:40px;height:40px;border-radius:10px;background:#efe6ff;display:flex;align-items:center;justify-content:center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6436af" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0116 0"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v2M4 12h2M20 12h-2M12 20v-2"/></svg>
+          </div>
+          <span style="font-size:12px;font-weight:700;letter-spacing:1px;color:#8d9096">SCENARIO 5</span>
+        </div>
+        <div style="font-size:20px;font-weight:600;color:#21262a;margin-bottom:10px;line-height:1.3">Track order stages end-to-end</div>
+        <div style="font-size:14px;color:#6b6c72;line-height:1.6;margin-bottom:16px">Same scheduled order as Scenario 1, but the review page shows a live progress tracker — scheduled, verified, completed, implementation, training — so the customer always knows what's next.</div>
+        <div class="uc-task"><div class="uc-task-label">YOUR TASK</div><div class="uc-task-body">Place the order and watch the tracker advance through post-order stages.</div></div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#6436af;margin-top:20px">Start flow <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6436af" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+      </div>
     </div>
-    <div style="max-width:1200px;width:100%;margin:0 auto;padding:0 32px 40px;font-size:12px;color:#8d9096;border-top:1px solid #e9edf2;margin-top:auto"><div style="padding-top:20px">Prototype for user testing · Not production UI · © 2026 Intuit Inc.</div></div>
+    <div style="max-width:1400px;width:100%;margin:0 auto;padding:0 32px 40px;font-size:12px;color:#8d9096;border-top:1px solid #e9edf2;margin-top:auto"><div style="padding-top:20px">Prototype for user testing · Not production UI · © 2026 Intuit Inc.</div></div>
   </div>
   <style>
     .uc-card{background:#fff;border:1px solid #e3e8ee;border-radius:14px;padding:28px;cursor:pointer;transition:.16s;box-shadow:0 1px 2px rgba(16,24,40,.04);display:flex;flex-direction:column}
@@ -849,7 +862,7 @@ function startScenario2(){
               <div class="hero-top" data-collapse-header onclick="toggleCollapse(this)">
                 <div class="hero-top-left">
                   <div class="hero-company"><span class="cn">Spark Constructions</span><span class="cid"><span style="color:#8d9096;font-weight:500;letter-spacing:normal;text-transform:none">Company ID:</span> 934145839208</span></div>
-                  <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a>
+                  <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a>
                 </div>
                 <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
               </div>
@@ -867,7 +880,7 @@ function startScenario2(){
                     </div>
                   </div>
                 </div>
-                <div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
+                <div class="hero-amount"><span class="hero-amount-lbl">First billed amount</span><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
               </div>
               <div class="hero-foot">
                 <div class="hr"></div>
@@ -884,7 +897,7 @@ function startScenario2(){
                 <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Intuit Enterprise Suite</span><span style="font-size:13px;color:#6b6c72">Includes 1 Entity, 6 Standard Users, 4 Dimensions, and Bill Pay Elite</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$715.00 <span style="font-size:13px;font-weight:500;color:#6b6c72">/mo</span></span></div>
                 <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Additional Entities</span><span style="font-size:13px;color:#6b6c72">13 entities included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$514.00 <span style="font-size:13px;font-weight:500;color:#6b6c72">/mo</span></span></div>
                 <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00 <span style="font-size:13px;font-weight:500;color:#6b6c72">/mo</span></span></div>
-                <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:24px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
                 <div style="padding:13px 28px 22px;border-top:1px solid #e2e9ed"><p style="font-size:12px;line-height:19px;color:#6b6c72">This order total matches your signed contract. Taxes are added at checkout phase. By placing this order you agree to Intuit's <span style="color:#205ea3;font-weight:600">Terms of Service</span> and <span style="color:#205ea3;font-weight:600">Privacy Statement</span>.</p></div>
               </div>
             </div>
@@ -917,7 +930,7 @@ function startScenario2(){
             <div class="hero-top" data-collapse-header onclick="toggleCollapse(this)">
               <div class="hero-top-left">
                 <div class="hero-company"><span class="cn">Spark Constructions</span><span class="cid"><span style="color:#8d9096;font-weight:500;letter-spacing:normal;text-transform:none">Company ID:</span> 934145839208</span></div>
-                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a>
+                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a>
               </div>
               <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </div>
@@ -935,7 +948,7 @@ function startScenario2(){
                   </div>
                 </div>
               </div>
-              <div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
+              <div class="hero-amount"><span class="hero-amount-lbl">First billed amount</span><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
             </div>
             <div class="hero-foot">
               <div class="hr"></div>
@@ -954,7 +967,7 @@ function startScenario2(){
               <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>
               <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Subtotal</span><span style="font-size:16px;font-weight:600;color:#21262a">$2,400.00</span></div>
               <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:16px;font-weight:600;color:#21262a">$250.00</span></div>
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:24px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">Tax included</span></div></div>
             </div>
           </div>
         </div>
@@ -962,13 +975,13 @@ function startScenario2(){
     </div>
     <div class="scrim">
       <div class="modal" style="width:487px">
-        <div class="modal-close hotspot" onclick="show('s1-review')">✕</div>
+        <div class="modal-close hotspot" onclick="s1ConfirmCancel()">✕</div>
         <div style="padding:40px 40px 0">
           <h2 style="font-size:24px;font-weight:600;color:#393a3d;margin-bottom:16px">Place order now</h2>
           <p style="font-size:16px;color:#393a3d;line-height:1.4">Before we place your order, we'll quickly verify all the company specific details. If everything is okay, your order is placed right away.</p>
         </div>
         <div style="display:flex;justify-content:flex-end;gap:20px;padding:32px 40px 40px">
-          <button class="btn btn-sm btn-secondary hotspot" onclick="show('s1-review')" style="border-width:2px">Cancel</button>
+          <button class="btn btn-sm btn-secondary hotspot" onclick="s1ConfirmCancel()" style="border-width:2px">Cancel</button>
           <button class="btn btn-sm btn-primary hotspot" onclick="runValidation()">Proceed</button>
         </div>
       </div>
@@ -1063,7 +1076,7 @@ function startScenario2(){
             <div class="hero-top" data-collapse-header onclick="toggleCollapse(this)">
               <div class="hero-top-left">
                 <div class="hero-company"><span class="cn">Spark Constructions</span><span class="cid"><span style="color:#8d9096;font-weight:500;letter-spacing:normal;text-transform:none">Company ID:</span> 934145839208</span></div>
-                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a>
+                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a>
               </div>
               <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </div>
@@ -1073,10 +1086,10 @@ function startScenario2(){
               <div class="hero-mid-left" style="justify-content:flex-start;gap:0">
                 <div style="width:56px;height:56px;border-radius:14px;background:#d4f0d1;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#108000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
                 <div style="padding-left:16px">
-                  <div style="font-family:var(--font-body);font-size:25px;font-weight:700;color:#21262a">Your order is completed</div>
+                  <div style="font-family:var(--font-body);font-size:24px;font-weight:600;color:#21262a">Your order is completed</div>
                 </div>
               </div>
-              <div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
+              <div class="hero-amount"><span class="amt">$2,650.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">Tax included</span></div>
             </div>
             <div class="hero-foot">
               <div class="hr"></div>
@@ -1097,7 +1110,7 @@ function startScenario2(){
             <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-bottom:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Subtotal</span><span style="font-size:16px;font-weight:600;color:#21262a">$2,400.00</span></div>
             <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-bottom:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:16px;font-weight:600;color:#21262a">$250.00</span></div>
-            <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:24px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">Tax included</span></div></div>
             </div>
           </div>
         </div>
@@ -1131,23 +1144,51 @@ function valIcon(state){
   if(state==='active') return '<span class="val-spin" style="width:24px;height:24px;border-radius:50%;border:2.5px solid #cfe4f7;border-top-color:#0077c5;display:inline-block;flex-shrink:0"></span>';
   return '<span style="width:24px;height:24px;border-radius:50%;background:#f0f1f3;display:inline-block;flex-shrink:0;border:1px dashed #c3ced5;box-sizing:border-box"></span>';
 }
-function renderVal(activeIndex, doneCount){
+/* Build the rows once \u2014 surgical updates only mutate what changed to
+   avoid tearing down the spinner each tick (which caused a flicker). */
+function buildValRows(){
   var list=document.getElementById('val-list');
   list.innerHTML = VAL_CHECKS.map(function(c,i){
-    var state = i<doneCount ? 'done' : (i===activeIndex?'active':'pending');
-    var trailing = state==='done' ? '<span style="margin-left:auto;font-size:13px;color:#0e7548">Passed</span>'
-                 : state==='active' ? '<span style="margin-left:auto;font-size:13px;font-weight:500;color:#0077c5">Checking\u2026</span>' : '';
-    var weight = state==='active'?'600':'400';
-    var color = state==='pending'?'#8d9096':'#393a3d';
-    return '<div style="display:flex;align-items:center;gap:12px">'+valIcon(state)+
-           '<span style="font-size:15px;font-weight:'+weight+';color:'+color+'">'+c+'</span>'+trailing+'</div>';
+    return '<div class="val-row" data-i="'+i+'" style="display:flex;align-items:center;gap:12px">'
+      + '<span class="val-ic-slot" data-state=""></span>'
+      + '<span class="val-txt" style="font-size:15px;font-weight:400;color:#8d9096">'+c+'</span>'
+      + '<span class="val-trail" style="margin-left:auto"></span>'
+    + '</div>';
   }).join('');
+}
+function renderVal(activeIndex, doneCount){
+  var rows = document.querySelectorAll('.val-row');
+  if(!rows.length){ buildValRows(); rows = document.querySelectorAll('.val-row'); }
+  rows.forEach(function(row, i){
+    var state = i<doneCount ? 'done' : (i===activeIndex?'active':'pending');
+    var slot = row.querySelector('.val-ic-slot');
+    var txt  = row.querySelector('.val-txt');
+    var tr   = row.querySelector('.val-trail');
+    if(slot.dataset.state === state) return; // unchanged \u2014 do not touch the DOM
+    slot.dataset.state = state;
+    slot.outerHTML = valIcon(state).replace('<span','<span class="val-ic-slot" data-state="'+state+'"');
+    if(state==='done'){
+      txt.style.fontWeight='400'; txt.style.color='#393a3d';
+      tr.innerHTML='<span style="font-size:13px;color:#0e7548">Passed</span>';
+    } else if(state==='active'){
+      txt.style.fontWeight='600'; txt.style.color='#393a3d';
+      tr.innerHTML='<span style="font-size:13px;font-weight:500;color:#0077c5">Checking\u2026</span>';
+    } else {
+      txt.style.fontWeight='400'; txt.style.color='#8d9096';
+      tr.innerHTML='';
+    }
+  });
   document.getElementById('val-bar').style.width = (doneCount/5*100)+'%';
   document.getElementById('val-count').textContent = doneCount+' of 5 checks complete';
 }
 var valTimer=null;
 function abortValidation(){
   if(valTimer){ clearInterval(valTimer); valTimer=null; }
+  if(typeof S5!=='undefined' && S5._active){ show('s5-review'); s5RenderTracker(); return; }
+  show('s1-review');
+}
+function s1ConfirmCancel(){
+  if(typeof S5!=='undefined' && S5._active){ show('s5-review'); s5RenderTracker(); return; }
   show('s1-review');
 }
 function runValidation(){
@@ -1158,6 +1199,7 @@ function runValidation(){
   document.getElementById('val-bar').style.background='#0077c5';
   document.getElementById('val-foot').textContent="We'll verify payment methods, addresses, and entity connections. Once complete, you can review and place your order.";
   var pb0=document.getElementById('val-place'); if(pb0) pb0.style.display='none';
+  buildValRows();
   renderVal(0,0);
   var STEP=4000; // ms per check -> ~20s total
   valTimer=setInterval(function(){
@@ -1493,7 +1535,7 @@ function toggleCollapse(headerEl){
                   </div>
                   <span class="cid">934145839208</span>
                 </div>
-                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a>
+                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a>
               </div>
               <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </div>
@@ -1514,7 +1556,7 @@ function toggleCollapse(headerEl){
 </clipPath>
 </defs>
 </svg></div>
-                <div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:25px;font-weight:700;color:#21262a" id="s2-hero-title">Your order is partially completed</div></div>
+                <div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:24px;font-weight:600;color:#21262a" id="s2-hero-title">Your order is partially completed</div></div>
               </div>
               <div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
             </div>
@@ -1537,7 +1579,7 @@ function toggleCollapse(headerEl){
               <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Intuit Enterprise Suite</span><span style="font-size:13px;color:#6b6c72">Includes 1 Entity, 6 Standard Users, 4 Dimensions, and Bill Pay Elite</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$715.00</span></div>
               <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Additional Entities</span><span style="font-size:13px;color:#6b6c72">13 entities included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$514.00</span></div>
               <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:24px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
               <div style="padding:13px 28px 22px;border-top:1px solid #e2e9ed"><p style="font-size:12px;line-height:19px;color:#6b6c72">This order total matches your signed contract. Taxes are added at checkout phase. By placing this order you agree to Intuit's <span style="color:#205ea3;font-weight:600">Terms of Service</span> and <span style="color:#205ea3;font-weight:600">Privacy Statement</span>.</p></div>
             </div>
           </div>
@@ -2496,15 +2538,15 @@ function s2ShowCompletedReview(){
     '<div class="hero-card" data-collapsible data-collapsed="false" style="border-color:#b6cff5;background:linear-gradient(83deg,#fafff6 .6%,#ffffff 37%)">'
     + '<div class="hero-top" data-collapse-header onclick="toggleCollapse(this)">'
       + '<div class="hero-top-left"><div class="hero-company"><span class="cn">Spark Constructions</span><span class="cid"><span style="color:#8d9096;font-weight:500;letter-spacing:normal;text-transform:none">Company ID:</span> 934145839208</span></div>'
-      + '<a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a></div>'
+      + '<a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a></div>'
       + '<span class="hero-chevron chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>'
     + '<div data-collapse-body>'
     + '<div class="hr"></div>'
     + '<div class="hero-mid"><div class="hero-mid-left" style="gap:12px">'
         + '<div style="width:56px;height:56px;border-radius:14px;background:#d4f0d1;display:flex;align-items:center;justify-content:center;flex-shrink:0">'
           + '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#108000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'
-        + '<div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:25px;font-weight:700;color:#21262a">Your order is completed</div></div></div>'
-      + '<div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div></div>'
+        + '<div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:24px;font-weight:600;color:#21262a">Your order is completed</div></div></div>'
+      + '<div class="hero-amount"><span class="amt">$2,650.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">Tax included</span></div></div>'
     + '<div class="hero-foot"><div class="hr"></div><div style="display:flex;align-items:flex-start;justify-content:space-between;width:100%">'
         + '<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:500;color:#6b6c72">Order billed on</span><span style="font-size:14px;font-weight:500;color:#21262a">Aug 20, 2026</span></div>'
         + '<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:12px;font-weight:500;color:#6b6c72">Order ID</span><span style="font-size:14px;font-weight:500;color:#21262a">83180912</span></div>'
@@ -2525,7 +2567,7 @@ function s2ShowCompletedReview(){
         + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>'
         + '<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Subtotal</span><span style="font-size:16px;font-weight:600;color:#21262a">$2,400.00</span></div>'
         + '<div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:16px;font-weight:600;color:#21262a">$250.00</span></div>'
-        + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>'
+        + '<div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:24px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">Tax included</span></div></div>'
       + '</div></div>';
 }
 
@@ -2952,7 +2994,7 @@ function closePaymentSplitModal(){
                   </div>
                   <span class="cid">934145839208</span>
                 </div>
-                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a>
+                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a>
               </div>
               <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </div>
@@ -2961,7 +3003,7 @@ function closePaymentSplitModal(){
               <div class="hero-mid">
                 <div class="hero-mid-left" style="gap:12px">
                   <div class="hero-err-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="-7" y="-6" width="70" height="68" rx="34" fill="#FAD7D6"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25.69 14.67c1.03-1.78 3.6-1.78 4.62 0l10.97 19c.99 1.72-.18 3.86-2.12 4l-.19.01H17.03c-1.99 0-3.25-2.09-2.4-3.83l.09-.17 10.97-19zM28.58 15.67c-.26-.44-.9-.44-1.15 0L16.45 34.67c-.26.44.06 1 .58 1H38.97c.51 0 .83-.56.57-1L28.58 15.67z" fill="#D52B1E"/><rect x="26.67" y="23.67" width="2.67" height="7.34" rx="1.33" fill="#D52B1E"/><circle cx="28" cy="33" r="1.33" fill="#D52B1E"/></svg></div>
-                  <div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:25px;font-weight:700;color:#21262a" id="s3-hero-title">Your order is partially completed</div></div>
+                  <div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:24px;font-weight:600;color:#21262a" id="s3-hero-title">Your order is partially completed</div></div>
                 </div>
                 <div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
               </div>
@@ -3101,7 +3143,7 @@ function closePaymentSplitModal(){
                   </div>
                   <span class="cid">934145839208</span>
                 </div>
-                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a>
+                <a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a>
               </div>
               <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
             </div>
@@ -3110,7 +3152,7 @@ function closePaymentSplitModal(){
               <div class="hero-mid">
                 <div class="hero-mid-left" style="gap:12px">
                   <div class="hero-err-icon" id="s4-hero-icon"><svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect x="-7" y="-6" width="70" height="68" rx="34" fill="#FAD7D6"/><path fill-rule="evenodd" clip-rule="evenodd" d="M25.69 14.67c1.03-1.78 3.6-1.78 4.62 0l10.97 19c.99 1.72-.18 3.86-2.12 4l-.19.01H17.03c-1.99 0-3.25-2.09-2.4-3.83l.09-.17 10.97-19zM28.58 15.67c-.26-.44-.9-.44-1.15 0L16.45 34.67c-.26.44.06 1 .58 1H38.97c.51 0 .83-.56.57-1L28.58 15.67z" fill="#D52B1E"/><rect x="26.67" y="23.67" width="2.67" height="7.34" rx="1.33" fill="#D52B1E"/><circle cx="28" cy="33" r="1.33" fill="#D52B1E"/></svg></div>
-                  <div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:25px;font-weight:700;color:#21262a" id="s4-hero-title">Your order is partially completed</div></div>
+                  <div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:24px;font-weight:600;color:#21262a" id="s4-hero-title">Your order is partially completed</div></div>
                 </div>
                 <div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
               </div>
@@ -3133,7 +3175,7 @@ function closePaymentSplitModal(){
               <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Intuit Enterprise Suite</span><span style="font-size:13px;color:#6b6c72">Includes 1 Entity, 6 Standard Users, 4 Dimensions, and Bill Pay Elite</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$715.00</span></div>
               <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Additional Entities</span><span style="font-size:13px;color:#6b6c72">13 entities included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$514.00</span></div>
               <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>
-              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:23px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:24px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,400.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">+ applicable taxes</span></div></div>
             </div>
           </div>
         </div>
@@ -3351,13 +3393,13 @@ function s3ShowCompletedReview(){
     '<div class="hero-card" data-collapsible data-collapsed="false" style="border-color:#b6cff5;background:linear-gradient(83deg,#fafff6 .6%,#ffffff 37%)">'
     + '<div class="hero-top" data-collapse-header onclick="toggleCollapse(this)">'
       + '<div class="hero-top-left"><div class="hero-company"><span class="cn">Spark Constructions</span><span class="cid"><span style="color:#8d9096;font-weight:500;letter-spacing:normal;text-transform:none">Company ID:</span> 934145839208</span></div>'
-      + '<a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6M9 15h6M9 11h6"/></svg>Contract: INTUITC - 9358</a></div>'
+      + '<a class="hero-contract" style="color:#0077c5;display:inline-flex;align-items:center;gap:6px;text-decoration:none;cursor:pointer;font-weight:500"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a></div>'
       + '<span class="hero-chevron chev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span></div>'
     + '<div data-collapse-body><div class="hr"></div>'
     + '<div class="hero-mid"><div class="hero-mid-left" style="gap:12px">'
       + '<div style="width:56px;height:56px;border-radius:14px;background:#d4f0d1;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#108000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'
-      + '<div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:25px;font-weight:700;color:#21262a">Your order is completed</div></div></div>'
-      + '<div class="hero-amount"><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div></div>'
+      + '<div style="padding-left:4px"><div style="font-family:var(--font-body);font-size:24px;font-weight:600;color:#21262a">Your order is completed</div></div></div>'
+      + '<div class="hero-amount"><span class="amt">$2,650.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">Tax included</span></div></div>'
     + '<div class="hero-foot"><div class="hr"></div><div style="display:flex;align-items:flex-start;justify-content:space-between;width:100%">'
       + '<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:11px;font-weight:600;color:#6b6c72;letter-spacing:.5px">ORDER ID</span><span style="font-size:14px;font-weight:500;color:#21262a">83180912</span></div>'
       + '<div style="display:flex;flex-direction:column;gap:6px"><span style="font-size:11px;font-weight:600;color:#6b6c72;letter-spacing:.5px">ORDER DATE</span><span style="font-size:14px;font-weight:500;color:#393a3d">Aug 20, 2026</span></div>'
@@ -4446,6 +4488,12 @@ function s4ShowCompletedReview(){
     badge.innerHTML='<span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#0f7d4d"/><path d="M6 10.4l2.6 2.6L14.5 7" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="lbl">All fixes applied</span>';
   }
   var title=document.getElementById('s4-hero-title'); if(title) title.textContent='Your order is completed';
+  // update hero amount to include tax on completion
+  var heroCard=document.getElementById('s4-hero-card');
+  if(heroCard){
+    var amtWrap=heroCard.querySelector('.hero-amount');
+    if(amtWrap) amtWrap.innerHTML='<span class="amt">$2,650.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">Tax included</span>';
+  }
   var icon=document.getElementById('s4-hero-icon');
   if(icon) icon.innerHTML='<svg width="56" height="56" viewBox="0 0 56 56" fill="none"><rect width="56" height="56" rx="28" fill="#DFF4E6"/><path d="M17 28.5L25 36.5L40 20.5" stroke="#0f7d4d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var w=document.getElementById('s4-err-widget');
@@ -4552,6 +4600,512 @@ function s4CancelAllResolutionTimers(){
     return _origGoHome();
   };
 })();
+</script>
+
+<!-- ============================================================
+     SCENARIO 5 — Order stage tracker with post-order journey
+     ============================================================ -->
+<style>
+/* Company chip with inline contract download — sits next to the company name */
+.hero-chip-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero-contract-chip{display:inline-flex;align-items:center;gap:6px;background:#f4f5f8;border:1px solid #d4d7dc;border-radius:9999px;padding:4px 10px 4px 8px;color:#0365ac;font-size:13px;font-weight:500;text-decoration:none;cursor:pointer;transition:.12s}
+.hero-contract-chip:hover{background:#eceef1;border-color:#c3ced5}
+.hero-contract-chip svg{width:14px;height:14px}
+
+/* Stage tracker */
+.s5-tracker{background:#fff;border:1px solid #e2e9ed;border-radius:8px;padding:18px 24px;margin-bottom:16px}
+.s5-tracker-head{display:none}
+.s5-tracker-title{font-family:var(--font-body);font-size:16px;font-weight:600;color:#393a3d}
+.s5-tracker-sub{font-size:13px;color:#6b6c72}
+.s5-stages{display:flex;align-items:flex-start;position:relative;padding:0 4px}
+.s5-stage{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;min-width:0}
+.s5-stage-dot{width:32px;height:32px;border-radius:50%;background:#fff;border:2px solid #d4d7dc;display:flex;align-items:center;justify-content:center;color:#8d9096;font-size:13px;font-weight:700;position:relative;z-index:1;transition:all .3s ease}
+.s5-stage-line{position:absolute;top:15px;left:50%;right:-50%;height:2px;background:#e2e9ed;z-index:0}
+.s5-stage:last-child .s5-stage-line{display:none}
+.s5-stage-lbl{font-size:12px;font-weight:600;color:#8d9096;text-align:center;line-height:1.3;margin-top:10px;max-width:120px}
+.s5-stage-sub{font-size:11.5px;color:#8d9096;margin-top:3px;text-align:center;line-height:1.35;padding:0 6px;min-height:2em}
+.s5-stage.done .s5-stage-dot{background:#108000;border-color:#108000;color:#fff}
+.s5-stage.done .s5-stage-line{background:#108000}
+.s5-stage.done .s5-stage-lbl{color:#393a3d}
+.s5-stage.active .s5-stage-dot{background:#0077c5;border-color:#0077c5;color:#fff;box-shadow:0 0 0 4px rgba(0,119,197,.16)}
+.s5-stage.active .s5-stage-lbl{color:#0077c5}
+.s5-stage.active .s5-stage-dot::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid #0077c5;animation:s5Pulse 1.6s ease-out infinite}
+@keyframes s5Pulse{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.6)}}
+.s5-stage-check{width:14px;height:14px}
+.s5-stage-spin{width:12px;height:12px;border-radius:50%;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;animation:s5Spin .8s linear infinite}
+@keyframes s5Spin{to{transform:rotate(360deg)}}
+
+/* Stage callout under the tracker */
+.s5-stage-callout{display:flex;align-items:flex-start;gap:14px;padding:16px 20px;background:#f4f9ff;border:1px solid #b6cff5;border-radius:8px;margin-top:20px}
+.s5-stage-callout .ic{width:28px;height:28px;border-radius:50%;background:#0077c5;color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.s5-stage-callout .txt{flex:1;font-size:13.5px;color:#393a3d;line-height:1.5}
+.s5-stage-callout .txt b{color:#21262a}
+.s5-stage-callout.done{background:#e6f4ec;border-color:#a3d8a8}
+.s5-stage-callout.done .ic{background:#108000}
+</style>
+
+<!-- S5.1 EMAIL — identical to S1, only button target differs -->
+<div class="screen" id="s5-email">
+  <div class="stage" style="background:#e9eaed;padding:32px 0;overflow:auto">
+    <div class="otlk">
+      <div class="otlk-top"><div class="ol"><span class="oi"><svg width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="4" width="13" height="16" rx="2" fill="#0f6cbd"/><path d="M8.5 8.2c-1.9 0-3.1 1.6-3.1 3.8s1.2 3.8 3.1 3.8 3.1-1.6 3.1-3.8-1.2-3.8-3.1-3.8zm0 6.1c-.9 0-1.5-1-1.5-2.3s.6-2.3 1.5-2.3 1.5 1 1.5 2.3-.6 2.3-1.5 2.3z" fill="#fff"/><path d="M16 9.2l6-2.2v10l-6-2.2z" fill="#0f6cbd"/></svg></span>Outlook</div><div class="osearch">Search</div><div class="owin"><span>&#8211;</span><span>&#9633;</span><span>&#10005;</span></div></div>
+      <div class="otlk-actions"><span class="oa"><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M9 14l-5-5 5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg>Reply</span><span class="oa"><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M7 14l-5-5 5-5"/><path d="M2 9h13a6 6 0 0 1 6 6v1"/></svg>Reply all</span><span class="oa"><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg>Forward</span><span class="oa"><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>Delete</span></div>
+      <div class="otlk-msg">
+        <div class="otlk-subj">INTUITC-9358 contract is set for order placement.</div>
+        <div class="otlk-from"><div class="otlk-av">IE</div><div class="otlk-fm"><div class="r1"><span class="snd">Intuit Enterprise Suite</span><span class="adr">&lt;enterprise-suite@notifications.intuit.com&gt;</span><span class="otlk-dt">Thu 1/15/2026 9:14 AM</span></div><div class="to">To: Dana Alvarez &lt;dana.alvarez@sparkconstructions.com&gt;</div></div><div class="otlk-rr"><button><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M9 14l-5-5 5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg>Reply</button><button><svg viewBox="0 0 24 24" fill="none" stroke="#444" stroke-width="1.8"><path d="M15 14l5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg>Forward</button></div></div>
+        <div class="otlk-prev">Review and run your order for Spark Constructions</div>
+      </div>
+      <div class="otlk-pane">
+        <div class="iesmail">
+          <div class="ies-hd"><div class="lg">INTUIT<span>Enterprise Suite</span></div><div class="pb">Powered by <span class="qb"><span class="ball"></span>quickbooks</span></div></div>
+          <div class="ies-b">
+            <div class="ies-col">
+              <p class="ies-h1">Your order is ready to review</p>
+              <p class="ies-p">Your order for Spark Constructions is set for Sep 2, 2026. You can review the schedule and details anytime in the order portal.</p>
+              <div class="ies-btn hotspot" onclick="show('s5-login')">Review order</div>
+            </div>
+            <div class="ies-card"><h3>What's included in this order</h3><div class="ies-fl"><div>Contract: INTUITC-9358</div><div>Entities: 12</div><div>Products: IES + Workforce</div><div>Signed: Aug 15, 2026</div><div>Ready to run: now</div></div></div>
+          </div>
+          <div class="ies-ft"><p>This message was sent to dana.alvarez@sparkconstructions.com at the request of an existing Intuit Enterprise Suite customer. If you have chosen not to receive marketing messages, you may continue to receive business communications about Intuit products, which may either affect your service or software, your account, or which may be legally required. If you receive a suspicious email, please report it by forwarding the email to security.intuit.com.</p><div class="lk"><a>Security</a><span style="color:#fff">|</span><a>Privacy statement</a></div><p>&copy; 2024 Intuit Inc., Trademarks.<br>2800 E. Commerce Center Place, Tucson, AZ 85706</p><div class="brand"><span class="it">INTUIT</span><span class="pl"><span class="b" style="background:#e01e5a"></span>turbotax</span><span class="pl"><span class="b" style="background:#00b64f"></span>creditkarma</span><span class="pl"><span class="b" style="background:#2ca01c"></span>quickbooks</span><span class="pl"><span class="b" style="background:#ffe01b"></span>mailchimp</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S5.2 LOGIN -->
+<div class="screen" id="s5-login">
+  <div class="stage">
+    <div class="frame1440" style="background:#f4f6f8">
+      <div class="shell-header-slot"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding-top:120px">
+        <div style="width:440px;background:#fff;border:1px solid #c3ced5;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.08);padding:40px">
+          <div style="width:48px;height:48px;background:#00254a;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px;margin-bottom:24px">IES</div>
+          <h1 style="font-size:28px;font-weight:600;color:#21262a;margin-bottom:8px">Sign in to your account</h1>
+          <p style="font-size:14px;color:#6b6c72;margin-bottom:28px">Access the Customer Order Portal to review and run your orders.</p>
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px">Email address</label>
+          <input id="s5-email-input" type="email" placeholder="you@company.com" oninput="s5CheckLogin()" style="width:100%;height:44px;border:1px solid #d4d7dc;border-radius:4px;padding:0 12px;font-size:14px;font-family:inherit;color:#393a3d;margin-bottom:20px;outline:none">
+          <label style="display:block;font-size:13px;font-weight:500;margin-bottom:6px">Password</label>
+          <div style="position:relative;margin-bottom:12px">
+            <input id="s5-pass-input" type="password" placeholder="Enter your password" oninput="s5CheckLogin()" style="width:100%;height:44px;border:1px solid #d4d7dc;border-radius:4px;padding:0 56px 0 12px;font-size:14px;font-family:inherit;color:#393a3d;outline:none">
+            <span onclick="s5TogglePass()" style="position:absolute;right:12px;top:14px;color:#205ea3;font-weight:500;font-size:13px;cursor:pointer">Show</span>
+          </div>
+          <button id="s5-signin-btn" disabled onclick="s5EnterReview()" style="width:100%;height:48px;background:#b7c2cb;color:#fff;font-weight:600;font-size:16px;border-radius:4px;cursor:not-allowed;border:none">Sign in</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S5.3 ORDER REVIEW with stage tracker -->
+<div class="screen" id="s5-review">
+  <div class="stage"><div class="frame1440" data-shell="orders" id="s5-review-frame">
+    <div class="shell-header-slot"></div>
+    <div class="shell-body">
+      <div class="shell-rail-slot"></div>
+      <div class="content"><div class="content-center">
+        <div class="pr-headwrap">
+          <a class="back-btn hotspot" onclick="goHome()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to orders</a>
+          <div class="pr-header">
+            <div class="pr-title">Order Review</div>
+            <div class="pr-header-right">
+              <a class="contact-mgr-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#393a3d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 10-9 9"/><path d="M3 14v-2a2 2 0 012-2h1v6H5a2 2 0 01-2-2z"/><path d="M21 14v-2a2 2 0 00-2-2h-1v6h1a2 2 0 002-2z"/><path d="M18 19a3 3 0 01-3 3h-3"/></svg>Contact account manager</a>
+              <div class="copilot-pill"><span class="prop"><svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M15.8773 6.05622L12.454 9.47989H17.2918V11.5139H12.4568L15.8773 14.9348L14.4389 16.3735L11.017 12.9509V17.792H8.98332V12.9502L5.56072 16.3735L4.12232 14.9348L7.54421 11.5125H2.7085V9.47847H7.54421L4.12232 6.05622L5.56072 4.61747L9.99945 9.05692L14.4389 4.61747L15.8773 6.05622Z" fill="#236CFF"/><path d="M10.0009 3.20898C10.9236 3.20902 11.6717 3.95708 11.6718 4.87987C11.6718 5.80272 10.9236 6.55108 10.0009 6.55112C9.07811 6.55112 8.32999 5.80274 8.32999 4.87987C8.33005 3.95706 9.07815 3.20898 10.0009 3.20898Z" fill="#236CFF"/></svg></span>Intuit Assist</div>
+            </div>
+          </div>
+        </div>
+        <div class="pr-body">
+          <div class="s5-tracker" id="s5-tracker"></div>
+          <div class="hero-card" data-collapsible data-collapsed="false" id="s5-hero-card">
+            <div class="hero-top" data-collapse-header onclick="toggleCollapse(this)">
+              <div class="hero-top-left">
+                <div class="hero-company">
+                  <div class="hero-chip-row">
+                    <span class="cn">Spark Constructions</span>
+                    <a class="hero-contract-chip" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>Download contract · INTUITC-9358</a>
+                  </div>
+                  <span class="cid"><span style="color:#8d9096;font-weight:500;letter-spacing:normal;text-transform:none">Company ID:</span> 934145839208</span>
+                </div>
+              </div>
+              <span class="hero-chevron chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+            </div>
+            <div data-collapse-body>
+              <div class="hr"></div>
+              <div class="hero-mid">
+                <div class="hero-mid-left" id="s5-hero-mid-left">
+                  <div class="hero-cal"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>
+                  <div class="hero-datewrap">
+                    <div class="lbl">You will be charged on</div>
+                    <div class="hero-date">Wednesday, September 2, 2026</div>
+                    <div class="hero-date-actions">
+                      <button class="btn btn-xs btn-primary hotspot" onclick="s5StartVerification()">Pay now</button>
+                      <button class="btn btn-xs btn-secondary">Select another date</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-amount" id="s5-hero-amount"><span class="hero-amount-lbl">First billed amount</span><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span></div>
+              </div>
+              <div class="hero-foot">
+                <div class="hr"></div>
+                <div class="hero-foot-row">
+                  <div class="dot-badge"><span class="dot"></span><span class="txt">A system check will run Sep 1. You'll be notified for any issues</span></div>
+                  <div style="display:flex;flex-direction:column;gap:2px;align-items:flex-end"><span style="font-size:12px;font-weight:500;color:#6b6c72">Payment split up</span><a onclick="openPaymentSplitModal()" style="color:#0077c5;font-size:14px;font-weight:500;cursor:pointer">View details</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="order-summary" data-collapsible data-collapsed="true">
+            <div class="os-head" data-collapse-header onclick="toggleCollapse(this)"><span class="os-title">Order breakdown</span><span class="os-chev chev"><svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span></div>
+            <div data-collapse-body style="display:none">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Intuit Enterprise Suite</span><span style="font-size:13px;color:#6b6c72">Includes 1 Entity, 6 Standard Users, 4 Dimensions, and Bill Pay Elite</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$715.00</span></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Additional Entities</span><span style="font-size:13px;color:#6b6c72">13 entities included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$514.00</span></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:22px 32px;border-top:1px solid #e2e9ed"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:15px;color:#21262a">Workforce Elite</span><span style="font-size:13px;color:#6b6c72">30 seats included</span></div><span style="font-size:15px;font-weight:700;color:#21262a">$1,171.00</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Subtotal</span><span style="font-size:16px;font-weight:600;color:#21262a">$2,400.00</span></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 28px;border-top:1px solid #e2e9ed"><span style="font-size:15px;font-weight:600;color:#21262a">Tax</span><span style="font-size:16px;font-weight:600;color:#21262a">$250.00</span></div>
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;padding:28px;border-top:1px solid #e2e9ed"><span style="font-size:16px;font-weight:500;color:#21262a">Order Total</span><div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px"><span style="font-size:24px;font-weight:600;color:#21262a;letter-spacing:-.5px">$2,650.00 <span style="font-size:16px;font-weight:500;color:#6b6c72">/mo</span></span><span style="font-size:13px;color:#21262a;font-weight:600">Tax included</span></div></div>
+              <div style="padding:13px 28px 22px;border-top:1px solid #e2e9ed"><p style="font-size:12px;line-height:19px;color:#6b6c72">This order total matches your signed contract. Taxes are added at checkout phase. By placing this order you agree to Intuit's <span style="color:#205ea3;font-weight:600">Terms of Service</span> and <span style="color:#205ea3;font-weight:600">Privacy Statement</span>.</p></div>
+            </div>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div></div>
+</div>
+
+<!-- S5 overlay slot — modals layer above s5-review so tracker stays visible -->
+<div id="s5-overlay-slot"></div>
+
+<!-- S5.4 SANDBOX preview screen -->
+<div class="screen" id="s5-sandbox">
+  <div class="stage"><div class="frame1440" data-shell="orders">
+    <div class="shell-header-slot"></div>
+    <div class="shell-body">
+      <div class="shell-rail-slot"></div>
+      <div class="content"><div class="content-center">
+        <div class="pr-headwrap">
+          <a class="back-btn hotspot" onclick="show('s5-review')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>Back to order review</a>
+          <div class="pr-header"><div class="pr-title">Sandbox environment</div></div>
+        </div>
+        <div style="background:#fff;border:1px dashed #b6cff5;border-radius:12px;padding:56px 40px;margin-top:24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px">
+          <div style="width:88px;height:88px;border-radius:50%;background:#e0edff;display:flex;align-items:center;justify-content:center">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0077c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:#e0edff;color:#0077c5;font-size:12px;font-weight:700;letter-spacing:.6px;padding:6px 12px;border-radius:9999px">SANDBOX · PLACEHOLDER</div>
+          <div style="font-family:var(--font-body);font-size:28px;font-weight:600;color:#21262a">Your sandbox is ready</div>
+          <div style="font-size:15px;color:#6b6c72;max-width:520px;line-height:1.5">This is a placeholder for the sandbox test environment. In production, your team would land in a fully-provisioned copy of IES with sample data — safe to click through before go-live.</div>
+          <div style="display:flex;gap:12px;margin-top:8px">
+            <button class="btn btn-sm btn-tertiary hotspot" onclick="show('s5-review')" style="min-width:160px">Back to order review</button>
+            <button class="btn btn-sm btn-primary" style="min-width:160px">Launch sandbox</button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div></div>
+</div>
+
+<script>
+/* ============================================================
+   SCENARIO 5 ENGINE — Order stage tracker
+   ============================================================ */
+var S5 = {
+  _active:false, stage:0, _timers:[],
+  stages:[
+    { key:'scheduled',      lbl:'Scheduled',              n:1,
+      before:'', active:'Pay when ready', done:'Paid on Sep 2' },
+    { key:'verification',   lbl:'Verification',           n:2,
+      before:'System check will happen', active:'System check running', done:'All checks passed' },
+    { key:'completed',      lbl:'Order completed',        n:3,
+      before:'Order needs to be placed', active:'Placing your order', done:'Order placed' },
+    { key:'sandbox',        lbl:'Sandbox environment',    n:4,
+      before:'Opens once order is placed', active:'Setting up sandbox…', done:'Sandbox ready' },
+    { key:'implementation', lbl:'Implementation kickoff', n:5,
+      before:'Rep will reach out Sep 8–12', active:'Rep reaching out Sep 8–12', done:'Kickoff scheduled' }
+  ]
+};
+
+function startScenario5(){
+  s5ClearTimers();
+  S5._active=true; S5.stage=0;
+  show('s5-email');
+}
+function s5CheckLogin(){
+  var e=document.getElementById('s5-email-input').value;
+  var p=document.getElementById('s5-pass-input').value;
+  var b=document.getElementById('s5-signin-btn');
+  var ok=e.length>0 && p.length>0;
+  b.disabled=!ok;
+  b.style.background=ok?'#0077c5':'#b7c2cb';
+  b.style.cursor=ok?'pointer':'not-allowed';
+}
+function s5TogglePass(){ var el=document.getElementById('s5-pass-input'); el.type=el.type==='password'?'text':'password'; }
+function s5EnterReview(){ show('s5-review'); s5RenderTracker(); s5UpdateHeroForStage(); }
+
+function s5ClearTimers(){
+  (S5._timers||[]).forEach(function(t){ clearTimeout(t); });
+  S5._timers=[];
+}
+
+function s5SubFor(i, current){
+  var orderPlaced = current >= 2;
+  if(!orderPlaced){
+    // Before order is placed
+    return [
+      'Contract signed on Aug 28',
+      'Verification of company details',
+      'When first payment goes through',
+      'Will be ready once order placed',
+      'Order needs to be billed first'
+    ][i];
+  }
+  // After order is placed
+  if(i===0) return 'Contract signed on Aug 28';
+  if(i===1) return 'All checks passed';
+  if(i===2) return 'Order billed on Sep 2';
+  if(i===3){
+    if(current===3) return 'Environment is being setup';
+    if(current>3)   return 'Sandbox ready · <a onclick="show(\'s5-sandbox\')" style="color:#0365ac;font-weight:600;cursor:pointer">Open →</a>';
+    return 'Will be ready shortly';
+  }
+  if(i===4) return 'Intuit rep will reach out between Sep 8–12';
+  return '';
+}
+
+function s5RenderTracker(){
+  var host=document.getElementById('s5-tracker'); if(!host) return;
+  var current = S5.stage;
+  var stagesHtml = S5.stages.map(function(st, i){
+    var cls='', inner='';
+    if(i<current){
+      cls='done';
+      inner='<svg class="s5-stage-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+    } else if(i===current){
+      cls='active';
+      // Stage 0 (Scheduled) and Stage 4 (Implementation waiting) show a filled number,
+      // not a spinner — Implementation isn't a "processing" step, it's a scheduled outreach.
+      inner = (st.key==='scheduled' || st.key==='implementation') ? String(st.n) : '<span class="s5-stage-spin"></span>';
+    } else {
+      inner=String(st.n);
+    }
+    var sub = s5SubFor(i, current);
+    return '<div class="s5-stage '+cls+'"><div class="s5-stage-line"></div>'
+      + '<div class="s5-stage-dot">'+inner+'</div>'
+      + '<div class="s5-stage-lbl">'+st.lbl+'</div>'
+      + '<div class="s5-stage-sub">'+sub+'</div>'
+    + '</div>';
+  }).join('');
+  host.innerHTML = '<div class="s5-stages">'+stagesHtml+'</div>';
+}
+
+function s5UpdateHeroForStage(){
+  var hero=document.getElementById('s5-hero-card');
+  var mid=document.getElementById('s5-hero-mid-left');
+  var amount=document.getElementById('s5-hero-amount');
+  if(!hero||!mid||!amount) return;
+  if(S5.stage===0){
+    // Scheduled — default hero styling (pale blue gradient, blue border)
+    hero.style.background='';
+    hero.style.borderColor='';
+    mid.style.justifyContent='';
+    mid.style.gap='';
+    mid.innerHTML =
+      '<div class="hero-cal"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg></div>'
+      + '<div class="hero-datewrap">'
+        + '<div class="lbl">You will be charged on</div>'
+        + '<div class="hero-date">Wednesday, September 2, 2026</div>'
+        + '<div class="hero-date-actions">'
+          + '<button class="btn btn-xs btn-primary hotspot" onclick="s5StartVerification()">Pay now</button>'
+          + '<button class="btn btn-xs btn-secondary">Select another date</button>'
+        + '</div>'
+      + '</div>';
+    amount.innerHTML = '<span class="hero-amount-lbl">First billed amount</span><span class="amt">$2,400.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">+ applicable taxes</span>';
+  } else if(S5.stage>=2){
+    // Order completed — match Scenario 1 completed hero styling (pale green gradient, blueish border)
+    hero.style.background='linear-gradient(87deg,#faffF6 .6%,#ffffff 37%)';
+    hero.style.borderColor='#b6cff5';
+    mid.style.justifyContent='flex-start';
+    mid.style.gap='0';
+    mid.innerHTML =
+      '<div style="width:56px;height:56px;border-radius:14px;background:#d4f0d1;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#108000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>'
+      + '<div style="padding-left:16px"><div style="font-family:var(--font-body);font-size:24px;font-weight:600;color:#21262a">Your order is completed</div></div>';
+    amount.innerHTML = '<span class="amt">$2,650.00 <span style="font-size:18px;font-weight:500;color:#6b6c72">/mo</span></span><span class="tax" style="font-weight:600;color:#21262a">Tax included</span>';
+  }
+}
+
+function s5AdvanceStage(){
+  if(S5.stage < S5.stages.length-1){
+    S5.stage++;
+    s5RenderTracker();
+    s5UpdateHeroForStage();
+  }
+}
+
+/* Pay now → confirm modal overlay above s5-review (so the tracker stays
+   visible in the background exactly as the user requested). */
+function s5StartVerification(){
+  if(S5.stage!==0) return;
+  s5ShowConfirmOverlay();
+}
+function s5CloseOverlay(){
+  var s=document.getElementById('s5-overlay-slot'); if(s) s.innerHTML='';
+  if(typeof unlockPageScroll==='function') unlockPageScroll();
+}
+function s5ShowConfirmOverlay(){
+  if(typeof lockPageScroll==='function') lockPageScroll();
+  document.getElementById('s5-overlay-slot').innerHTML =
+    '<div class="scrim" style="display:flex;position:fixed;inset:56px 0 0 0;z-index:1200">'
+    + '<div class="modal" style="width:487px">'
+      + '<div class="modal-close hotspot" onclick="s5CloseOverlay()">✕</div>'
+      + '<div style="padding:40px 40px 0">'
+        + '<h2 style="font-size:24px;font-weight:600;color:#393a3d;margin-bottom:16px">Place order now</h2>'
+        + '<p style="font-size:16px;color:#393a3d;line-height:1.4">Before we place your order, we\'ll quickly verify all the company specific details. If everything is okay, your order is placed right away.</p>'
+      + '</div>'
+      + '<div style="display:flex;justify-content:flex-end;gap:20px;padding:32px 40px 40px">'
+        + '<button class="btn btn-sm btn-secondary hotspot" onclick="s5CloseOverlay()" style="border-width:2px">Cancel</button>'
+        + '<button class="btn btn-sm btn-primary hotspot" onclick="s5RunValidation()">Proceed</button>'
+      + '</div>'
+    + '</div></div>';
+}
+/* Validation overlay — same 5-check progress as Scenario 1, but rendered as an
+   overlay above s5-review. Verification stage is not "active" until this modal
+   opens; keeping the tracker at stage 0 (Scheduled) in the background. */
+var _s5ValTimer=null;
+function s5RunValidation(){
+  var CHECKS = [
+    'Verifying entity provisioning setup',
+    'Verifying subscription setup',
+    'Verifying entities linked to master account',
+    'Confirming payment methods on file',
+    'Confirming billing address on file'
+  ];
+  var STEP = 4000;
+  var slot = document.getElementById('s5-overlay-slot');
+  // Build the modal DOM ONCE — subsequent updates only mutate what changed
+  // so the spinner doesn't get torn down every tick (which was flickering).
+  slot.innerHTML =
+    '<div class="scrim" style="display:flex;position:fixed;inset:56px 0 0 0;z-index:1200">'
+    + '<div class="modal" style="width:576px;padding:40px">'
+      + '<div class="modal-close" onclick="s5AbortValidation()" title="Cancel verification">✕</div>'
+      + '<h2 id="s5v-title" style="font-size:24px;font-weight:600;color:#393a3d;margin-bottom:6px">Verification in progress</h2>'
+      + '<p id="s5v-sub" style="font-size:14px;color:#6b6c72;line-height:1.5;margin-bottom:20px">We\'re checking your order before execution. This usually takes 2–3 minutes — you can keep this open.</p>'
+      + '<div style="height:8px;border-radius:4px;background:#e3e5e8;overflow:hidden;margin-bottom:10px"><div id="s5v-bar" style="height:8px;border-radius:4px;background:#0077c5;width:0%;transition:width .5s ease"></div></div>'
+      + '<div id="s5v-count" style="font-size:13px;font-weight:500;color:#6b6c72;margin-bottom:24px">0 of '+CHECKS.length+' checks complete</div>'
+      + '<div style="display:flex;flex-direction:column;gap:16px">'
+        + CHECKS.map(function(t, i){
+          return '<div class="s5v-row" data-i="'+i+'" style="display:flex;align-items:center;gap:12px">'
+            + '<span class="s5v-ic" data-state=""></span>'
+            + '<span class="s5v-txt" style="font-size:14px;color:#21262a">'+t+'</span>'
+          + '</div>';
+        }).join('')
+      + '</div>'
+      + '<p style="font-size:13px;color:#6b6c72;line-height:1.5;margin-top:28px">We\'ll verify payment methods, addresses, and entity connections. Once complete, you can review and place your order.</p>'
+      + '<div id="s5v-place-slot"></div>'
+    + '</div></div>';
+  var done = 0;
+  s5vUpdate(done, CHECKS.length);
+  // Reflect verification-in-progress on the tracker
+  S5.stage = 1;
+  s5RenderTracker();
+  _s5ValTimer = setInterval(function(){
+    done++;
+    s5vUpdate(done, CHECKS.length);
+    if(done>=CHECKS.length){
+      clearInterval(_s5ValTimer); _s5ValTimer=null;
+      var t=document.getElementById('s5v-title'); if(t) t.textContent='Verification complete';
+      var s=document.getElementById('s5v-sub'); if(s) s.textContent='Everything looks good — you can place your order now.';
+      var ps=document.getElementById('s5v-place-slot');
+      if(ps) ps.innerHTML='<button onclick="s5PlaceFromValidation()" style="margin-top:24px;width:100%;height:48px;background:#0077c5;color:#fff;font-weight:600;font-size:16px;border:none;border-radius:4px;cursor:pointer;font-family:inherit">Place order</button>';
+    }
+  }, STEP);
+}
+function s5vUpdate(done, total){
+  var rows = document.querySelectorAll('.s5v-row');
+  rows.forEach(function(row, i){
+    var state = i<done ? 'done' : (i===done ? 'active' : 'pending');
+    var ic = row.querySelector('.s5v-ic');
+    var txt = row.querySelector('.s5v-txt');
+    if(ic.dataset.state === state) return; // no change — leave DOM alone (spinner keeps spinning)
+    ic.dataset.state = state;
+    if(state==='done'){
+      ic.style.cssText='width:22px;height:22px;border-radius:50%;background:#dcf5de;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0';
+      ic.innerHTML='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#108000" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>';
+      txt.style.color='#21262a';
+    } else if(state==='active'){
+      ic.style.cssText='width:22px;height:22px;border-radius:50%;border:2.5px solid #d4d7dc;border-top-color:#0077c5;animation:s5Spin .8s linear infinite;flex-shrink:0;box-sizing:border-box';
+      ic.innerHTML='';
+      txt.style.color='#21262a';
+    } else {
+      ic.style.cssText='width:22px;height:22px;border-radius:50%;background:#eceef1;flex-shrink:0;box-sizing:border-box';
+      ic.innerHTML='';
+      txt.style.color='#8d9096';
+    }
+  });
+  var bar=document.getElementById('s5v-bar'); if(bar) bar.style.width=Math.round((done/total)*100)+'%';
+  var cnt=document.getElementById('s5v-count'); if(cnt) cnt.textContent=done+' of '+total+' checks complete';
+}
+function s5AbortValidation(){
+  if(_s5ValTimer){ clearInterval(_s5ValTimer); _s5ValTimer=null; }
+  S5.stage = 0;
+  s5RenderTracker();
+  s5UpdateHeroForStage();
+  s5CloseOverlay();
+}
+/* Click "Place order" on validation modal → show success modal overlay */
+function s5PlaceFromValidation(){
+  // Move Order completed to active in the tracker while the success modal is up
+  S5.stage = 2;
+  s5RenderTracker();
+  s5UpdateHeroForStage();
+  s5ShowSuccessOverlay();
+}
+function s5ShowSuccessOverlay(){
+  document.getElementById('s5-overlay-slot').innerHTML =
+    '<div class="scrim" style="display:flex;position:fixed;inset:56px 0 0 0;z-index:1200">'
+    + '<div class="modal" style="width:651px;padding:40px">'
+      + '<div class="modal-close hotspot" onclick="s5CloseSuccessAndAdvance()">✕</div>'
+      + '<div style="display:flex;flex-direction:column;gap:22px;align-items:center">'
+        + '<div style="width:60px;height:60px;border-radius:50%;background:#dcf5de;display:flex;align-items:center;justify-content:center"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0e7548" stroke-width="2.5"><circle cx="12" cy="12" r="10" fill="#0e7548" stroke="none"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff"/></svg></div>'
+        + '<div style="text-align:center">'
+          + '<div style="font-size:24px;font-weight:600;color:#393a3d;line-height:1.3">Order placed successfully</div>'
+          + '<div style="font-size:14px;font-weight:500;color:#393a3d;margin-top:8px">Spark Constructions · INTUITC-9358</div>'
+          + '<div style="font-size:14px;font-weight:500;color:#6b6c72;margin-top:4px">Order ID: 5671234</div>'
+        + '</div>'
+        + '<div style="width:100%;color:#393a3d">'
+          + '<ul style="list-style:disc;padding-left:24px;display:flex;flex-direction:column;gap:6px;font-size:16px;line-height:24px">'
+            + '<li>Your Intuit Enterprise Suite Accounts are now available for use. An Intuit Implementation Consultant will reach out to you.</li>'
+            + '<li>You will get an email confirmation for the order placed.</li>'
+          + '</ul>'
+        + '</div>'
+        + '<button class="hotspot" onclick="s5CloseSuccessAndAdvance()" style="background:#0077c5;color:#fff;font-weight:600;font-size:16px;height:36px;padding:0 16px;border-radius:4px;align-self:center;border:none;font-family:inherit;cursor:pointer">Review order summary</button>'
+      + '</div>'
+    + '</div></div>';
+}
+/* Success modal dismissed → close overlay, start Sandbox setup for ~20s,
+   then flip to Implementation kickoff (stays active with a date-range). */
+function s5CloseSuccessAndAdvance(){
+  s5CloseOverlay();
+  S5.stage = 3; // Sandbox environment active
+  s5RenderTracker();
+  S5._timers.push(setTimeout(function(){
+    S5.stage = 4; // Implementation kickoff active (does not auto-complete)
+    s5RenderTracker();
+  }, 20000));
+}
+
+/* Reset on Home */
+(function(){
+  var _origGoHome = window.goHome;
+  window.goHome = function(){
+    if(typeof S5!=='undefined'){ S5._active=false; S5.stage=0; }
+    s5ClearTimers();
+    if(_s5ValTimer){ clearInterval(_s5ValTimer); _s5ValTimer=null; }
+    var slot=document.getElementById('s5-overlay-slot'); if(slot) slot.innerHTML='';
+    if(typeof unlockPageScroll==='function') unlockPageScroll();
+    return _origGoHome();
+  };
+})();
+
+/* Hydrate the newly added S5 shells */
+if(typeof hydrateShell==='function') hydrateShell();
 </script>
 
 </body>
